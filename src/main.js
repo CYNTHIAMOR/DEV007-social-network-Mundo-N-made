@@ -1,5 +1,41 @@
-// Este es el punto de entrada de tu aplicacion
-
-import { myFunction } from './lib/index.js';
+/* eslint-disable import/no-cycle */
+import { Home } from './components/Home.js';
+// eslint-disable-next-line import/named
+import { Register } from './components/Register.js';
+import { Login } from './components/Login.js';
+import { myFunction } from './components/index.js';
 
 myFunction();
+
+const rootDiv = document.getElementById('root');
+
+const routes = {
+  '/': Home,
+  '/register': Register,
+  '/login': Login,
+};
+
+export const onNavigate = (pathname) => {
+  window.history.pushState(
+    {},
+    pathname,
+    window.location.origin + pathname,
+  );
+
+  while (rootDiv.firstChild) {
+    rootDiv.removeChild(rootDiv.firstChild);
+  }
+
+  rootDiv.appendChild(routes[pathname]());
+};
+
+const component = routes[window.location.pathname];
+
+window.onpopstate = () => {
+  while (rootDiv.firstChild) {
+    rootDiv.removeChild(rootDiv.firstChild);
+  }
+  rootDiv.appendChild(component());
+};
+
+rootDiv.appendChild(component());
