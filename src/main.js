@@ -1,7 +1,11 @@
 /* eslint-disable import/no-cycle */
 import { Home } from './components/Home.js';
+// eslint-disable-next-line import/named
 import { Register } from './components/Register.js';
 import { Login } from './components/Login.js';
+import { myFunction } from './components/index.js';
+
+myFunction();
 
 const rootDiv = document.getElementById('root');
 
@@ -31,7 +35,7 @@ window.onpopstate = () => {
   while (rootDiv.firstChild) {
     rootDiv.removeChild(rootDiv.firstChild);
   }
-  rootDiv.appendChild(routes[window.location.pathname]());
+  rootDiv.appendChild(component());
 };
 
 rootDiv.appendChild(component());
