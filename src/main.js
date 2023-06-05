@@ -3,9 +3,12 @@ import { Home } from './components/Home.js';
 // eslint-disable-next-line import/named
 import { Register } from './components/Register.js';
 import { Login } from './components/Login.js';
-import { myFunction } from './components/index.js';
+import { index, myFunction } from './index.js';
 
 myFunction();
+
+const d = document;
+d.addEventListener("DOMContentLoaded", index);
 
 const rootDiv = document.getElementById('root');
 
@@ -38,4 +41,4 @@ window.onpopstate = () => {
   rootDiv.appendChild(component());
 };
 
-rootDiv.appendChild(component());
+rootDiv.appendChild(routes[window.location.pathname]);

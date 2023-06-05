@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
-// import { onNavigate } from '../main.js';
+import { onNavigate } from '../main.js';
 
-export const Home = (onNavigate) => {
+export const Home = () => {
   const HomeDiv = document.createElement('div');
   const buttonRegister = document.createElement('button');
   const buttonLogin = document.createElement('button');
