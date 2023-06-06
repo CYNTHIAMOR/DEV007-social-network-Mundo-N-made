@@ -41,4 +41,7 @@ window.onpopstate = () => {
   rootDiv.appendChild(component());
 };
 
-rootDiv.appendChild(routes[window.location.pathname]);
+rootDiv.appendChild(component());
+//chicas aqui inicio a dar funcionamiento me falta separar las funciones
+const btnIniciarSesion = document.getElementById(buttonLogin)
+
