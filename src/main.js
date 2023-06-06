@@ -3,12 +3,12 @@ import { Home } from './components/Home.js';
 // eslint-disable-next-line import/named
 import { Register } from './components/Register.js';
 import { Login } from './components/Login.js';
-import { index, myFunction } from './index.js';
+// import { index, myFunction } from './index.js';
 
-myFunction();
+// myFunction();
 
-const d = document;
-d.addEventListener("DOMContentLoaded", index);
+/* const d = document;
+d.addEventListener("DOMContentLoaded", index); */
 
 const rootDiv = document.getElementById('root');
 
@@ -29,7 +29,7 @@ export const onNavigate = (pathname) => {
     rootDiv.removeChild(rootDiv.firstChild);
   }
 
-  rootDiv.appendChild(routes[pathname]());
+  rootDiv.appendChild(routes[pathname](onNavigate));
 };
 
 const component = routes[window.location.pathname];
@@ -41,7 +41,4 @@ window.onpopstate = () => {
   rootDiv.appendChild(component());
 };
 
-rootDiv.appendChild(component());
-//chicas aqui inicio a dar funcionamiento me falta separar las funciones
-const btnIniciarSesion = document.getElementById(buttonLogin)
-
+rootDiv.appendChild(component(onNavigate));
