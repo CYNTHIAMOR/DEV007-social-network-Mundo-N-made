@@ -1,42 +1,35 @@
 /* eslint-disable import/no-cycle */
-import { Home } from './components/Home.js';
-// eslint-disable-next-line import/named
-import { Register } from './components/Register.js';
-import { Login } from './components/Login.js';
-import { myFunction } from './components/index.js';
-
-myFunction();
-
-const rootDiv = document.getElementById('root');
+import './config/firebase.config.js';
+// eslint-disable-next-line import/no-cycle
+import { login } from './components/Login.js';
+// eslint-disable-next-line import/no-cycle
+import { register } from './components/Register.js';
+// eslint-disable-next-line import/no-cycle
+import { home } from './components/Home.js';
 
 const routes = {
-  '/': Home,
-  '/register': Register,
-  '/login': Login,
+  '/': login,
+  '/register': register,
+  '/home': home,
 };
 
 export const onNavigate = (pathname) => {
-  window.history.pushState(
-    {},
-    pathname,
-    window.location.origin + pathname,
-  );
-
+  const rootDiv = document.getElementById('root');
+  window.history.pushState({}, pathname, window.location.origin + pathname);
   while (rootDiv.firstChild) {
     rootDiv.removeChild(rootDiv.firstChild);
   }
-
   rootDiv.appendChild(routes[pathname]());
 };
 
-const component = routes[window.location.pathname];
-
-window.onpopstate = () => {
-  while (rootDiv.firstChild) {
-    rootDiv.removeChild(rootDiv.firstChild);
-  }
+window.addEventListener('DOMContentLoaded', () => {
+  const rootDiv = document.getElementById('root');
+  const component = routes[window.location.pathname];
+  window.onpopstate = () => {
+    rootDiv.appendChild(component());
+  };
   rootDiv.appendChild(component());
-};
+});
 
 rootDiv.appendChild(component());
 //chicas aqui inicio a dar funcionamiento me falta separar las funciones
