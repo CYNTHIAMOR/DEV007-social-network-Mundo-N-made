@@ -1,11 +1,16 @@
 /* eslint-disable import/no-cycle */
-import './config/firebase.config.js';
-// eslint-disable-next-line import/no-cycle
-import { login } from './components/Login.js';
-// eslint-disable-next-line import/no-cycle
-import { register } from './components/Register.js';
-// eslint-disable-next-line import/no-cycle
-import { home } from './components/Home.js';
+import { Home } from './components/Home.js';
+// eslint-disable-next-line import/named
+import { Register } from './components/Register.js';
+import { Login } from './components/Login.js';
+// import { index, myFunction } from './index.js';
+
+// myFunction();
+
+/* const d = document;
+d.addEventListener("DOMContentLoaded", index); */
+
+const rootDiv = document.getElementById('root');
 
 const routes = {
   '/': login,
@@ -19,7 +24,8 @@ export const onNavigate = (pathname) => {
   while (rootDiv.firstChild) {
     rootDiv.removeChild(rootDiv.firstChild);
   }
-  rootDiv.appendChild(routes[pathname]());
+
+  rootDiv.appendChild(routes[pathname](onNavigate));
 };
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -31,7 +37,4 @@ window.addEventListener('DOMContentLoaded', () => {
   rootDiv.appendChild(component());
 });
 
-rootDiv.appendChild(component());
-//chicas aqui inicio a dar funcionamiento me falta separar las funciones
-const btnIniciarSesion = document.getElementById(buttonLogin)
-
+rootDiv.appendChild(component(onNavigate));

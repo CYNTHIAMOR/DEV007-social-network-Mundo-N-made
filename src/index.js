@@ -1,24 +1,11 @@
-// eslint-disable-next-line import/no-cycle
-// import { onNavigate } from '../main.js';
-// Ejecutando funciones
-/* document
-  .getElementById("btn__iniciar-sesion")
-  .addEventListener("click", iniciarSesion);
-document.getElementById("btn__registrarse").addEventListener("click", register);
-window.addEventListener("resize", anchoPage);
+// aqui exportaras las funciones que necesites
 
-//Declarando variables
-const formulario_login = document.querySelector(".formulario__login");
-const formulario_register = document.querySelector(".formulario__register");
-const contenedor_login_register = document.querySelector(
-  ".contenedor__login-register"
-);
-const caja_trasera_login = document.querySelector(".caja__trasera-login");
-const caja_trasera_register = document.querySelector(".caja__trasera-register");
-
-//FUNCIONES
-
-function anchoPage() {
+/* export const myFunction = () => {
+  // aqui tu codigo
+  // eslint-disable-next-line no-console
+  console.log("Hola mundo!");
+}; */
+export const anchoPage = (register, login, password) => {
   if (window.innerWidth > 850) {
     caja_trasera_register.style.display = "block";
     caja_trasera_login.style.display = "block";
@@ -30,11 +17,11 @@ function anchoPage() {
     contenedor_login_register.style.left = "0px";
     formulario_register.style.display = "none";
   }
-}
+};
 
 anchoPage();
 
-function iniciarSesion() {
+export function iniciarSesion() {
   if (window.innerWidth > 850) {
     formulario_login.style.display = "block";
     contenedor_login_register.style.left = "10px";
@@ -65,18 +52,4 @@ function register() {
     caja_trasera_login.style.display = "block";
     caja_trasera_login.style.opacity = "1";
   }
-} */
-
-export const Login = (onNavigate) => {
-  const HomeDiv = document.createElement('div');
-  HomeDiv.textContent = 'Bienvenida al Login';
-  const buttonHome = document.createElement('button');
-
-  buttonHome.textContent = 'Regresar al Home';
-
-  buttonHome.addEventListener('click', () => onNavigate('/'));
-
-  HomeDiv.appendChild(buttonHome);
-
-  return HomeDiv;
-};
+}
