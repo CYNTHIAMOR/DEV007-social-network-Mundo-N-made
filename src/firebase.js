@@ -1,31 +1,17 @@
-import { initializeApp } from 'firebase/app';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// TODO: Replace the following with your app's Firebase project configuration
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  //...
+  apiKey: "AIzaSyAeX5Bl119lMQCRsJQkKBm1OVYKi8J_MoY",
+  authDomain: "mundo-nomade.firebaseapp.com",
+  projectId: "mundo-nomade",
+  storageBucket: "mundo-nomade.appspot.com",
+  messagingSenderId: "1053555948264",
+  appId: "1:1053555948264:web:b3c3ca0ecef304438c275d"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-
-
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
-
-// TODO: Replace the following with your app's Firebase project configuration
-const firebaseConfig = {
-  //...
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// Get a list of cities from your database
-async function getCities(db) {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  return cityList;
-}
