@@ -13,18 +13,14 @@ d.addEventListener("DOMContentLoaded", index); */
 const rootDiv = document.getElementById('root');
 
 const routes = {
-  '/': Home,
+  '/': login,
   '/register': Register,
-  '/login': Login,
+  '/home': Home,
 };
 
 export const onNavigate = (pathname) => {
-  window.history.pushState(
-    {},
-    pathname,
-    window.location.origin + pathname,
-  );
-
+  const rootDiv = document.getElementById('root');
+  window.history.pushState({}, pathname, window.location.origin + pathname);
   while (rootDiv.firstChild) {
     rootDiv.removeChild(rootDiv.firstChild);
   }
@@ -32,13 +28,13 @@ export const onNavigate = (pathname) => {
   rootDiv.appendChild(routes[pathname](onNavigate));
 };
 
-const component = routes[window.location.pathname];
-
-window.onpopstate = () => {
-  while (rootDiv.firstChild) {
-    rootDiv.removeChild(rootDiv.firstChild);
-  }
+window.addEventListener('DOMContentLoaded', () => {
+  const rootDiv = document.getElementById('root');
+  const component = routes[window.location.pathname];
+  window.onpopstate = () => {
+    rootDiv.appendChild(component());
+  };
   rootDiv.appendChild(component());
-};
+});
 
 rootDiv.appendChild(component(onNavigate));
