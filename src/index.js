@@ -4,7 +4,7 @@
   // aqui tu codigo
   // eslint-disable-next-line no-console
   console.log("Hola mundo!");
-}; */
+};
 export const anchoPage = (register, login, password) => {
   if (window.innerWidth > 850) {
     caja_trasera_register.style.display = "block";
@@ -53,3 +53,4 @@ function register() {
     caja_trasera_login.style.opacity = "1";
   }
 }
+*/
