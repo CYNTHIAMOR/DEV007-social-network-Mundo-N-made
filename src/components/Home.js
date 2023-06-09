@@ -14,7 +14,7 @@ export const Home = (onNavigate) => {
   const registerLabel = document.createElement('label');
   // creamos el texto dentro de div
   buttonLogin.textContent = 'Iniciar Sesión';
-  registerLabel.textContent = 'No tienes cuenta?';
+  registerLabel.textContent = 'No tienes cuenta???';
   buttonRegister.textContent = 'Registrate Aquí';
 
   /* const pictures = document.createElement('img');
