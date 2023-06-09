@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-import { initializeApp } from "firebase/app";
-
-// Import the functions you need from the SDKs you need
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-=======
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
->>>>>>> 66bac4e0f6253520226880252ebb41c708f9bb93
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAeX5Bl119lMQCRsJQkKBm1OVYKi8J_MoY",
@@ -20,16 +10,8 @@ const firebaseConfig = {
   projectId: "mundo-nomade",
   storageBucket: "mundo-nomade.appspot.com",
   messagingSenderId: "1053555948264",
-<<<<<<< HEAD
-  appId: "1:1053555948264:web:b3c3ca0ecef304438c275d",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-=======
   appId: "1:1053555948264:web:b3c3ca0ecef304438c275d"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
->>>>>>> 66bac4e0f6253520226880252ebb41c708f9bb93

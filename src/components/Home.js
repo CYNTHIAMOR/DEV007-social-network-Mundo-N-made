@@ -1,28 +1,7 @@
-// eslint-disable-next-line import/no-cycle
-// import { onNavigate } from '../main.js';
+
 
 export const Home = (onNavigate) => {
   // creamos los div con js
-  
-  /*const homeDiv = document.createElement('div');
-  
-  const buttomRegister = document.getElementById('buttonRegister');
-  const impre = `
-    <div class="pitures" id="pitures"></div>
-    <div class="logo" id="logo"></div>
-    <div class="singIn" id="singIn">
-      <button id="buttonLogin">Iniciar Sesión</button>
-    </div>
-    <div class="register" id="singIn" >
-      <p>No tienes cuenta?</p>
-      <a href="./components/Register.js">Registrate aquí</a>
-    </div>
-    <div class="conditions" id="conditions"></div>`;
-
-  homeDiv.innerHTML = impre;
-
-  buttomRegister.addEventListener('click', () => onNavigate('/register'));
-  return homeDiv;*/
 
   const homeDiv = document.createElement('div');
   const pictureDiv = document.createElement('div');
@@ -37,26 +16,17 @@ export const Home = (onNavigate) => {
   buttonLogin.textContent = 'Iniciar Sesión';
   registerLabel.textContent = 'No tienes cuenta?';
   buttonRegister.textContent = 'Registrate Aquí';
-  
- /* const pictures = document.createElement('img');
-  pictures.src = './img/pictures.png';*/
 
-
+  /* const pictures = document.createElement('img');
+  pictures.src = './img/pictures.png'; */
 
   // hacemos el llamado
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
   buttonLogin.addEventListener('click', () => onNavigate('/login'));
 
-// agregar class
-// registerDiv.style.backgroundColor = '#000000';
-pictureDiv.classList.add('picture')
- registerDiv.classList.add('register');
- logoDiv.classList.add('logo');
- singInDiv.classList.add('singIn');
- conditionDiv.classList.add('condition');
-
-
-
+  // agregar class
+  // registerDiv.style.backgroundColor = '#000000';
+  
 
   homeDiv.appendChild(pictureDiv);
   homeDiv.appendChild(logoDiv);
@@ -65,7 +35,15 @@ pictureDiv.classList.add('picture')
   homeDiv.appendChild(conditionDiv);
   registerDiv.appendChild(registerLabel);
   registerDiv.appendChild(buttonRegister);
-  singInDiv.appendChild(buttonLogin);
+  singInDiv.appendChild(buttonLogin); 
+
+
+
+  pictureDiv.classList.add('picture');
+  registerDiv.classList.add('register');
+  logoDiv.classList.add('logo');
+  singInDiv.classList.add('singIn');
+  conditionDiv.classList.add('condition');
 
   return homeDiv;
 };

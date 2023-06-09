@@ -1,16 +1,32 @@
-// eslint-disable-next-line import/no-cycle
-// import { onNavigate } from '../main.js';
-
 export const Register = (onNavigate) => {
-  const HomeDiv = document.createElement('div');
-  HomeDiv.textContent = 'Bienvenida al registro';
-  const buttonHome = document.createElement('button');
+ const HomeDiv = document.createElement('div');
+ const buttonSubmitRegister = document.createElement('button');
+ const buttonBack = document.createElement('button')
+ buttonSubmitRegister.textContent = 'Enviar';
+ buttonBack.textContent = 'Back';
 
-  buttonHome.textContent = 'Regresar al Home';
 
-  buttonHome.addEventListener('click', () => onNavigate('/'));
+  HomeDiv.innerHTML += 
+  `<input id='input-email' placeholder='Correo electronico' type='email'>
+  <input id='input-password' placeholder='Contraseña' type='password'>`;
 
-  HomeDiv.appendChild(buttonHome);
+ const inputEmail = HomeDiv.querySelector('#input-email');
+ const inputPassword = HomeDiv.querySelector('#input-password');
+  
+ buttonSubmitRegister.addEventListener('click', (e) => {
+  e.preventDefault();
+  crearUsuarioConCorreoYContraseña(
+    inputEmail.ariaValue,
+    inputPassword.ariaValue
+  )/*.then(() =>{
+  onNavigate('/login')
+ });*/
+});
+buttonBack.addEventListener('click', () => onNavigate('/'));
 
-  return HomeDiv;
+HomeDiv.appendChild(buttonBack);
+HomeDiv.appendChild(buttonSubmitRegister);
+return HomeDiv
+
 };
+
