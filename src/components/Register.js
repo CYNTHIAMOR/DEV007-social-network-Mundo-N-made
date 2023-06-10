@@ -4,7 +4,7 @@ export const Register = (onNavigate) => {
  const buttonBack = document.createElement('button')
  buttonSubmitRegister.textContent = 'Enviar';
  buttonBack.textContent = 'Back';
-
+zz
 
   HomeDiv.innerHTML += 
   `<input id='input-email' placeholder='Correo electronico' type='email'>
@@ -18,15 +18,17 @@ export const Register = (onNavigate) => {
   crearUsuarioConCorreoYContraseña(
     inputEmail.ariaValue,
     inputPassword.ariaValue
-  )/*.then(() =>{
-  onNavigate('/login')
- });*/
+
 });
+
 buttonBack.addEventListener('click', () => onNavigate('/'));
 
 HomeDiv.appendChild(buttonBack);
 HomeDiv.appendChild(buttonSubmitRegister);
 return HomeDiv
 
+
+
 };
+
 
