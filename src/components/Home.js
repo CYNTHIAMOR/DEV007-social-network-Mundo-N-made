@@ -35,7 +35,8 @@ export const Home = (onNavigate) => {
   homeDiv.appendChild(conditionDiv);
   registerDiv.appendChild(registerLabel);
   registerDiv.appendChild(buttonRegister);
-  singInDiv.appendChild(buttonLogin); 
+  singInDiv.appendChild(buttonLogin);
+  
 
 
 
@@ -44,6 +45,7 @@ export const Home = (onNavigate) => {
   logoDiv.classList.add('logo');
   singInDiv.classList.add('singIn');
   conditionDiv.classList.add('condition');
+  buttonLogin.classList.add('principal-button');
 
   return homeDiv;
 };

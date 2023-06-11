@@ -1,11 +1,11 @@
-export const Login = (onNavigate) => {
+export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
-  HomeDiv.textContent = 'Bienvenida al Login';
+  HomeDiv.textContent = 'Bienvenida al Post';
   const buttonHome = document.createElement('button');
 
   buttonHome.textContent = 'Regresar al Home';
 
-  buttonHome.addEventListener('click', () => onNavigate('/post'));
+  buttonHome.addEventListener('click', () => onNavigate('/'));
 
   HomeDiv.appendChild(buttonHome);
 
