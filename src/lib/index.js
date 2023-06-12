@@ -1,5 +1,8 @@
 // aqui exportaras las funciones que necesites
-import { createUserWithEmailAndPasword } from '../firebase/auth';
+
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 
-export const crearUsuarioConCorreoYContraseña = (email, contraseña) => createUserWithEmailAndPasword(auth, email, contraseña);
+export const crearUsuarioConCorreoYContraseña = (email, contraseña) => {
+  createUserWithEmailAndPassword(auth, email, contraseña);
+};

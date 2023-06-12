@@ -12,7 +12,7 @@ body{
       background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
     background-repeat: no-repeat;
     width: 100%;
-    height: 1024px;
+    height: auto;
    
    
 }
@@ -22,15 +22,19 @@ h1{
 }
 
 .picture{
-    background-image: url(./img/pictures.png);
-    background-size: cover;
+    background-image: url(../img/pictures.png);
+    background-size: 600px;
+    background-repeat: no-repeat;
     width: 100%;
-    height: 500px;
+    height: 700px;
    
 }
 
 .logo{
-    background-image: url(./img/logo.png);
+    background-image: url(../img/logo.png);
+    background-size: 200px;
+    width: 200px;
+    height: auto;
 
 }
 
@@ -87,7 +91,7 @@ hr{
   color: rgb(212, 205, 205) ;
   font-size: larger;
 }
-.input-wrapper {
+/*.input-wrapper {
   position: relative;
   width: 271px;
 }
@@ -109,7 +113,7 @@ hr{
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-}
+}*/
 
 
 form{
@@ -121,7 +125,7 @@ form{
 
 
 /* Botones*/
-.principal-button {
+/* .principal-button {
   margin-top: 50px;
   width: 445px;
   height: 56px;
@@ -160,7 +164,26 @@ form{
   
   .principal-button:hover:before {
     transform: translateX(15em);
-  }
+  } */
+
+.principal-button{
+  margin-top: 50px;
+  width: 445px;
+  height: 56px;
+  background-color: #1F0D3A;
+  color: white;
+  font-size: large;
+  border-radius: 5px;
+  border-style: none;
+  box-shadow: 10px 5px 5px rgba(182, 180, 180, 0.5);
+  
+}
+.principal-button:hover{
+  background-color: #1BFD9C;
+  color: black;
+  transform: scale(1.05);
+
+}
 
 .google-icon{
   border-style: none;
@@ -174,6 +197,55 @@ form{
   
 }
   
+.div-post{
+  margin-top: 50px;
+  width: 100%;
+  background-color: white;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  
+}
+textarea{
+
+  width: 80%;
+  min-height: 50px;
+  align-items: center;
+  border-style: solid;
+  
+}
+nav{
+  margin-top: 5px;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  
+}
+
+main{
+  width: 100%;
+  min-height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h2{
+  margin: 50px;
+}
+section{
+  width: 80%;
+  
+
+}
+ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
 
 @media (max-width: 390px) {
 

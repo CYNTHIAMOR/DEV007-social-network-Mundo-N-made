@@ -3,7 +3,9 @@
 export const Home = (onNavigate) => {
   // creamos los div con js
 
-  const homeDiv = document.createElement('div');
+  const HomeDiv = document.createElement('div');
+  const HomeDivPre = document.createElement('div');
+  const HomeDivPos = document.createElement('div');
   const pictureDiv = document.createElement('div');
   const logoDiv = document.createElement('div');
   const singInDiv = document.createElement('div');
@@ -28,17 +30,18 @@ export const Home = (onNavigate) => {
   // registerDiv.style.backgroundColor = '#000000';
   
 
-  homeDiv.appendChild(pictureDiv);
-  homeDiv.appendChild(logoDiv);
-  homeDiv.appendChild(singInDiv);
-  homeDiv.appendChild(registerDiv);
-  homeDiv.appendChild(conditionDiv);
+  HomeDivPre.appendChild(pictureDiv);
+  HomeDivPre.appendChild(logoDiv);
+  HomeDiv.appendChild(HomeDivPre);
+  HomeDiv.appendChild(HomeDivPos);
+
+  HomeDivPos.appendChild(singInDiv);
+  HomeDivPos.appendChild(registerDiv);
+  HomeDivPos.appendChild(conditionDiv);
   registerDiv.appendChild(registerLabel);
   registerDiv.appendChild(buttonRegister);
   singInDiv.appendChild(buttonLogin);
   
-
-
 
   pictureDiv.classList.add('picture');
   registerDiv.classList.add('register');
@@ -46,6 +49,8 @@ export const Home = (onNavigate) => {
   singInDiv.classList.add('singIn');
   conditionDiv.classList.add('condition');
   buttonLogin.classList.add('principal-button');
+  
+ 
 
-  return homeDiv;
+  return HomeDiv;
 };

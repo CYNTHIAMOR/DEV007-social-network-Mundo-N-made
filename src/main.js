@@ -4,7 +4,6 @@ import { Register } from './components/Register.js';
 import { Login } from './components/Login.js';
 import { Post } from './components/Post.js';
 
-
 const rootDiv = document.getElementById('root');
 
 const routes = {
