@@ -43,13 +43,15 @@ export const Register = (onNavigate) => {
   const inputEmail = HomeDiv.querySelector('#input-email');
   const inputPassword = HomeDiv.querySelector('#input-password');
 
+  const buttonChico = HomeDiv.querySelector('#backP');
+  buttonChico.addEventListener('click', () => {
+    onNavigate('/login');
+  });
+
   buttonSubmitRegister.addEventListener('click', (e) => {
     e.preventDefault();
-
-    crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value);
-    /* then(() => {
-      onNavigate('/post');
-    });*/
+    crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value, onNavigate);
+    console.log('aaaaa');
   });
 
   buttonBack.addEventListener('click', () => onNavigate('/'));

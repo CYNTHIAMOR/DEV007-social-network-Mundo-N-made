@@ -5,12 +5,11 @@ import { Login } from './components/Login.js';
 import { Post } from './components/Post.js';
 
 const rootDiv = document.getElementById('root');
-
 const routes = {
   '/': Home,
-  '/register': Register,
   '/login': Login,
   '/post': Post,
+  '/register': Register,
 
 };
 

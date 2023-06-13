@@ -1,56 +1,49 @@
-
-
 export const Home = (onNavigate) => {
   // creamos los div con js
 
-  const HomeDiv = document.createElement('div');
-  const HomeDivPre = document.createElement('div');
-  const HomeDivPos = document.createElement('div');
-  const pictureDiv = document.createElement('div');
-  const logoDiv = document.createElement('div');
-  const singInDiv = document.createElement('div');
-  const registerDiv = document.createElement('div');
-  const conditionDiv = document.createElement('div');
-  const buttonRegister = document.createElement('buttom');
-  const buttonLogin = document.createElement('button');
-  const registerLabel = document.createElement('label');
+  const HomeDiv = document.createElement("div");
+  const HomeDivOne = document.createElement('div');
+  const HomeDivTwo = document.createElement('div');
+  const pictureDiv = document.createElement("div");
+  const logoDiv = document.createElement("div");
+  const singInDiv = document.createElement("div");
+  const registerDiv = document.createElement("div");
+  const conditionDiv = document.createElement("div");
+  const buttonRegister = document.createElement("buttom");
+  const buttonLogin = document.createElement("button");
+  const registerLabel = document.createElement("label");
   // creamos el texto dentro de div
-  buttonLogin.textContent = 'Iniciar Sesión';
-  registerLabel.textContent = 'No tienes cuenta???';
-  buttonRegister.textContent = 'Registrate Aquí';
+  buttonLogin.textContent = "Iniciar Sesión";
+  registerLabel.textContent = "No tienes cuenta???";
+  buttonRegister.textContent = "Registrate Aquí";
 
   /* const pictures = document.createElement('img');
   pictures.src = './img/pictures.png'; */
 
   // hacemos el llamado
-  buttonRegister.addEventListener('click', () => onNavigate('/register'));
-  buttonLogin.addEventListener('click', () => onNavigate('/login'));
+  buttonRegister.addEventListener("click", () => onNavigate("/register"));
+  buttonLogin.addEventListener("click", () => onNavigate("/login"));
 
   // agregar class
   // registerDiv.style.backgroundColor = '#000000';
-  
 
-  HomeDivPre.appendChild(pictureDiv);
-  HomeDivPre.appendChild(logoDiv);
-  HomeDiv.appendChild(HomeDivPre);
-  HomeDiv.appendChild(HomeDivPos);
-
-  HomeDivPos.appendChild(singInDiv);
-  HomeDivPos.appendChild(registerDiv);
-  HomeDivPos.appendChild(conditionDiv);
+  HomeDivOne.appendChild(pictureDiv);
+  HomeDivOne.appendChild(logoDiv);
+  HomeDivTwo.appendChild(singInDiv);
+  HomeDivTwo.appendChild(registerDiv);
+  HomeDivTwo.appendChild(conditionDiv);
   registerDiv.appendChild(registerLabel);
   registerDiv.appendChild(buttonRegister);
   singInDiv.appendChild(buttonLogin);
-  
+  HomeDiv.appendChild(HomeDivOne);
+  HomeDiv.appendChild(HomeDivTwo);
 
-  pictureDiv.classList.add('picture');
-  registerDiv.classList.add('register');
-  logoDiv.classList.add('logo');
-  singInDiv.classList.add('singIn');
-  conditionDiv.classList.add('condition');
-  buttonLogin.classList.add('principal-button');
-  
- 
+
+  HomeDivOne.classList.add('HomeDivOne');
+  HomeDivTwo.classList.add('HomeDivTwo');
+  pictureDiv.classList.add("picture");
+  logoDiv.classList.add("logo");
+  buttonLogin.classList.add("principal-button");
 
   return HomeDiv;
 };

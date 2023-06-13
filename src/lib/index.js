@@ -3,6 +3,13 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 
-export const crearUsuarioConCorreoYContraseña = (email, contraseña) => {
-  createUserWithEmailAndPassword(auth, email, contraseña);
-};
+export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate) {
+  createUserWithEmailAndPassword(auth, email, contraseña)
+    .then((result) => {
+      if (result.user) {
+        localStorage.setItem('casita', JSON.stringify(result));
+        onNavigate('/post');
+      }
+    });
+// .catch((err) => { alert('hola'); });
+}
