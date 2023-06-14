@@ -274,6 +274,23 @@ span{
   min-height: 812px;
 }
 
+/* Pag de Post */
+
+.container-presentation{
+  width: 355px;
+  height: 90px;
+  background: linear-gradient(90deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%);
+  border-radius: 0 0 30px 0;
+  padding-top: 30px;
+  padding-left: 20px;
+}
+
+.container-background{
+  background-color: #F5F5F5;
+  width: 355px;
+  min-height: 812px;
+}
+
 .container-logo{
   background-image: url(./img/logo-post-movil.png);
   height: 100px;

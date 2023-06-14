@@ -55,7 +55,7 @@ export const Register = (onNavigate) => {
     crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value, onNavigate);
   });
 
-  HomeDiv.classList.add('register');
+
 
   return HomeDiv;
 };
