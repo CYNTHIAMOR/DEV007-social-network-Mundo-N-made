@@ -6,20 +6,28 @@
     font-family: "Open Sans", sans-serif;
 
 }
-
-body{
-  background: rgb(31,13,58);
-    background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
-  background-repeat: no-repeat;
-  width: 355px;
-  height: 812px;
   
+body{
+      background: rgb(31,13,58);
+        background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
+      background-repeat: no-repeat;
+      width: 355px;
+      height: 812px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      
 }
+  
+ h1{
+     
+      font-size: larger;
+      font-weight: 700;
+      padding: 40px;
+ }
 
-h1{
-  margin: 80px;
-  font-size: bold;
-}
 
 .HomeDivOne{
 
@@ -46,30 +54,27 @@ h1{
   margin-top: 350px;
 }
 
-/*.register{
 
+
+/*login*/
+.register-presentation{
   display: flex;
-  flex-direction: row;
-  text-align: center;
+  align-items: center;
   justify-content: center;
-}*/
-
-/* .register-presentation{
-  margin: 40px;
-  width: 570px;
-  height: 950px;
+  min-height: 80vh;
   background-color: white;
 }
 .register-form{
+  display: flex;
+  flex-direction: column;
   margin: 40px;
   width: 650px;
   height: 950px;
   background-color: white;
   border-radius: 10px;
-  
+  z-index: calc(100);
 }
-
-input{
+.input{
   margin-top: 20px ;
   width: 445px;
   height: 70px;
@@ -93,6 +98,7 @@ hr{
   transform: scale(1.05);
   box-shadow: 0 0 2rem rgba(0 0 0 / .3);
 
+
 }
 .x{
   padding-top: 40px;
@@ -100,7 +106,7 @@ hr{
   color: rgb(212, 205, 205) ;
   font-size: larger;
 }
-/*.input-wrapper {
+.input-wrapper {
   position: relative;
   width: 271px;
 }
@@ -115,7 +121,9 @@ hr{
 
 
 .icon {
-  color: #191919;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   width: 20px;
   height: 20px;
@@ -123,6 +131,7 @@ hr{
   top: 50%;
   transform: translateY(-50%);
 }
+
 
 
 form{
@@ -257,5 +266,5 @@ ul{
   flex-direction: row;
   justify-content: space-between;
   list-style-type: none;
-} */
-    
+} 
+  
