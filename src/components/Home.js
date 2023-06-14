@@ -9,13 +9,15 @@ export const Home = (onNavigate) => {
   const singInDiv = document.createElement("div");
   const registerDiv = document.createElement("div");
   const conditionDiv = document.createElement("div");
+  const conditionP = document.createElement('p');
   const buttonRegister = document.createElement("buttom");
   const buttonLogin = document.createElement("button");
   const registerLabel = document.createElement("label");
   // creamos el texto dentro de div
   buttonLogin.textContent = "Iniciar Sesión";
-  registerLabel.textContent = "No tienes cuenta???";
-  buttonRegister.textContent = "Registrate Aquí";
+  registerLabel.textContent = "No tienes cuenta?";
+  buttonRegister.textContent = "Registrate Aquí!!!";
+  conditionP.textContent = 'Al presionar crear cuenta o iniciar sesión, aceptas nuestra politica de privacidad y cookies.'
 
   /* const pictures = document.createElement('img');
   pictures.src = './img/pictures.png'; */
@@ -37,6 +39,7 @@ export const Home = (onNavigate) => {
   singInDiv.appendChild(buttonLogin);
   HomeDiv.appendChild(HomeDivOne);
   HomeDiv.appendChild(HomeDivTwo);
+  conditionDiv.appendChild(conditionP);
 
 
   HomeDivOne.classList.add('HomeDivOne');
@@ -44,6 +47,9 @@ export const Home = (onNavigate) => {
   pictureDiv.classList.add("picture");
   logoDiv.classList.add("logo");
   buttonLogin.classList.add("principal-button");
-
+  registerDiv.classList.add('register-div');
+  registerLabel.classList.add('register-label');
+  buttonRegister.classList.add('button-register');
+  conditionP.classList.add('condition-p');
   return HomeDiv;
 };

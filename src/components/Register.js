@@ -3,21 +3,18 @@ import { crearUsuarioConCorreoYContraseña } from '../lib';
 export const Register = (onNavigate) => {
   const HomeDiv = document.createElement('div');
 
-  const buttonBack = document.createElement('button');
-
   // const registerForm = document.querySelector("#registerForm");
 
-  buttonBack.textContent = 'atras';
-
-  HomeDiv.innerHTML = `<div class='register-presentation' id='registerPresentation'> 
-   <h1>Hello world</h1>
-    </div>`;
-
-  HomeDiv.innerHTML += `<div class='register-form' id='registerForm'> 
-  <button class="back" id="backP"> x </button> 
-  
-    <h1>Registro</h1>   
-    <form>
+  HomeDiv.innerHTML += `<div class='register-form-total' id='registerFormTotal'> 
+  <button class="back" id="backP"> <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M5 12l14 0" />
+  <path d="M5 12l6 6" />
+  <path d="M5 12l6 -6" />
+</svg></button> 
+    <div class="register-form">
+      <h1 class="title-one">Registro</h1>   
+      <form>
         
           <input id='input-name' placeholder='Nombre' type='text' class="input">
        
@@ -31,12 +28,17 @@ export const Register = (onNavigate) => {
           <input id='input-password' placeholder='Contraseña' class="input" type='password'>
        
         
-    </form>
-    <div class="register"><hr> <p class="x"> o </p><hr></div>
-    <div><button class="google-icon"> <img class="google" src="./img/logo-google.png"></button></div> 
-    <div><button class="principal-button" id="buttonSubmitRegister">Registrarse</button></div>
-        
-        
+      </form>
+    
+      <hr>
+      <div><button class="google-icon"> <img class="google" src="./img/logo-google.png"></button></div> 
+      <div><button class="principal-button-dark" id="buttonSubmitRegister">Registrarse</button></div>
+    
+      </div>  
+
+      <div>
+        <p class="condition-p">Al presionar crear cuenta o iniciar sesión, aceptas nuestra politica de privacidad y cookies.</p>
+      </div>
     
       </div>`;
   const buttonSubmitRegister = HomeDiv.querySelector('#buttonSubmitRegister');
@@ -45,18 +47,13 @@ export const Register = (onNavigate) => {
 
   const buttonChico = HomeDiv.querySelector('#backP');
   buttonChico.addEventListener('click', () => {
-    onNavigate('/login');
+    onNavigate('/');
   });
 
   buttonSubmitRegister.addEventListener('click', (e) => {
     e.preventDefault();
     crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value, onNavigate);
-    console.log('aaaaa');
   });
-
-  buttonBack.addEventListener('click', () => onNavigate('/'));
-
-  HomeDiv.appendChild(buttonBack);
 
   HomeDiv.classList.add('register');
 
