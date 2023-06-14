@@ -13,12 +13,26 @@ body{
   background-repeat: no-repeat;
   width: 355px;
   height: 812px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   
 }
 
-h1{
-  margin: 80px;
-  font-size: bold;
+.title-one{
+ 
+  font-size: larger;
+  font-weight: 700;
+  padding: 40px;
+  
+}
+.HomeDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
 }
 
 .HomeDivOne{
@@ -26,16 +40,19 @@ h1{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   margin: 0px; 
+  position: relative;
 }
 
 .picture{
   background-image: url(./img/pictures.png);
   background-repeat: no-repeat;
   width: 355px;
-  height: 812px;
-    
-    
+  height: 500px;
+  position: absolute;
+
+       
 }
 
 .logo{
@@ -43,16 +60,202 @@ h1{
   width: 100%;
   height: 300px;
   background-repeat: no-repeat;
-  margin-top: 350px;
+  margin-top: 270px;
+  margin-left: 170px;
+  position: absolute;
+}
+.HomeDivTwo{
+  margin-top: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  
+}
+.principal-button{
+  width: 280px;
+  height: 50px;
+  background-color: white;
+  color:black;
+  font-size: large;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: 10px 5px 5px rgba(37, 37, 37, 0.1);
+  
+}
+.principal-button:hover{
+  background-color: rgb(31,13,58);
+  color: white;
+  transform: scale(1.05);
+  cursor: pointer;
+
 }
 
-/*.register{
+.register-div{
 
   display: flex;
   flex-direction: row;
   text-align: center;
   justify-content: center;
-}*/
+  color: white;
+
+  
+}
+.button-register{
+  padding: 10px;
+  font-weight: 800;
+  
+}
+
+.button-register:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.register-label{
+ padding-top: 10px;
+ padding-bottom: 10px;
+ margin-top: 3px;
+ 
+}
+
+.condition-p{
+  margin-left: 20px;
+  width: 350px;
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+
+
+/* Pag de Registro*/
+
+
+.register-form{
+  width: 325px;
+  height: 650px;
+  background-color: white;
+  border-radius: 5px;
+  text-align: center;
+  margin: 30px;
+
+}
+input{
+  padding-left: 15px;
+  margin-top: 15px ;
+  width: 280px;
+  height: 50px;
+  border-radius: 3px;
+  border-style: solid;
+  font-size: large;
+  
+}
+hr{
+  margin: 50px;
+  width: 220px;
+  border-color: rgb(212, 205, 205);
+}
+.google-icon{
+  width: 55px;
+  height: 55px;
+  transition: 0.2s;
+  background-color: white;
+  border-radius: 50px;
+  border-style: none;
+}
+.google-icon:hover{
+  transform: scale(1.1);
+  box-shadow: 0 0 2rem rgba(0 0 0 / .3);
+
+}
+.principal-button-dark{
+  margin-top: 40px;
+  width: 280px;
+  height: 50px;
+  background-color: rgb(31,13,58);;
+  color: white;
+  font-size: large;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: 10px 5px 5px rgba(37, 37, 37, 0.1);
+  
+}
+.principal-button-dark:hover{
+  background-color:rgba(0,212,255,1);
+  color: black;
+  transform: scale(1.05);
+  cursor: pointer;
+
+}
+
+#backP{
+  display: flex;
+  margin-left: 35px;
+  text-align: center;
+  width: 33px;
+  height: 25px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+
+
+/* Pag de Login */
+
+.title-two{
+  color: white;
+  font-size: larger;
+  
+  padding-right: 100px;
+}
+span{
+  font-size: small;
+}
+.sing-in-form{
+  width: 325px;
+  height: 650px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.correo, .password{
+  border: 1px solid white;
+  background-color: transparent;
+}
+.correo, .password::placeholder {
+  color: white;
+}
+.logo-blanco{
+  margin-left: 120px;
+  background-image: url(./img/logo-blanco.png);
+  width: 180px;
+  height: 180px;
+  background-repeat: no-repeat;
+}
+.sing-in-father{
+  margin: 100px 0px 100px 0px;
+}
+.sing-in-title{
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* .register-presentation{
   margin: 40px;
