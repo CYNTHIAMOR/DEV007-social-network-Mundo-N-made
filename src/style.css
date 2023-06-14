@@ -9,7 +9,7 @@
 
 body{
   background: rgb(31,13,58);
-    background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
+  background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
   background-repeat: no-repeat;
   width: 355px;
   height: 812px;
@@ -20,6 +20,28 @@ body{
   text-align: center;
   
 }
+.nav-button{
+  background-color: transparent;
+  border: none;
+}
+
+.menu{
+  background-color: #E7E7E9;
+  width: 355px;
+  position: absolute;
+
+
+}
+
+.container-nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+
+
 
 .title-one{
  
@@ -28,12 +50,7 @@ body{
   padding: 40px;
   
 }
-.HomeDiv{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0px;
-}
+
 
 .HomeDivOne{
 
@@ -244,10 +261,37 @@ span{
 }
 
 
+/* Pag de Post */
 
+.container-presentation{
+  width: 355px;
+  height: 90px;
+  background: linear-gradient(90deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%);
+  border-radius: 0 0 30px 0;
+  padding-top: 30px;
+  padding-left: 20px;
+}
 
+.container-background{
+  background-color: #F5F5F5;
+  width: 355px;
+  min-height: 812px;
+}
 
+.container-logo{
+  background-image: url(./img/logo-post-movil.png);
+  height: 100px;
+  width: 180px;
+  background-repeat: no-repeat;
+  padding-top:100px;
 
+}
+
+.container-close{
+ background-color: red;
+  height: 30px;
+  width: 30px;
+}
 
 
 
