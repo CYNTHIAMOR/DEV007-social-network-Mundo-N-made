@@ -8,31 +8,339 @@
 }
 
 body{
-   background: rgb(31,13,58);
-      background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 1024px;
-   
-   
+  background: rgb(31,13,58);
+    background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
+  background-repeat: no-repeat;
+  width: 355px;
+  height: 812px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
 }
+
+.title-one{
+ 
+  font-size: larger;
+  font-weight: 700;
+  padding: 40px;
+  
+}
+.HomeDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+}
+
+.HomeDivOne{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0px; 
+  position: relative;
+}
+
 .picture{
-    background-image: url(./img/pictures.png);
-    background-size: cover;
-    width: 100%;
-    height: 500px;
-   
+  background-image: url(./img/pictures.png);
+  background-repeat: no-repeat;
+  width: 355px;
+  height: 500px;
+  position: absolute;
+
+       
 }
+
 .logo{
-    background-image: url(./img/logo.png);
+  background-image: url(./img/logo-principal-chico.png);
+  width: 100%;
+  height: 300px;
+  background-repeat: no-repeat;
+  margin-top: 270px;
+  margin-left: 170px;
+  position: absolute;
+}
+.HomeDivTwo{
+  margin-top: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  
+}
+.principal-button{
+  width: 280px;
+  height: 50px;
+  background-color: white;
+  color:black;
+  font-size: large;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: 10px 5px 5px rgba(37, 37, 37, 0.1);
+  
+}
+.principal-button:hover{
+  background-color: rgb(31,13,58);
+  color: white;
+  transform: scale(1.05);
+  cursor: pointer;
 
 }
 
-.register{
-    background-color: aqua;
+.register-div{
+
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  color: white;
+
+  
+}
+.button-register{
+  padding: 10px;
+  font-weight: 800;
+  
 }
 
-button {
+.button-register:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.register-label{
+ padding-top: 10px;
+ padding-bottom: 10px;
+ margin-top: 3px;
+ 
+}
+
+.condition-p{
+  margin-left: 20px;
+  width: 350px;
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+
+
+/* Pag de Registro*/
+
+
+.register-form{
+  width: 325px;
+  height: 650px;
+  background-color: white;
+  border-radius: 5px;
+  text-align: center;
+  margin: 30px;
+
+}
+input{
+  padding-left: 15px;
+  margin-top: 15px ;
+  width: 280px;
+  height: 50px;
+  border-radius: 3px;
+  border-style: solid;
+  font-size: large;
+  
+}
+hr{
+  margin: 50px;
+  width: 220px;
+  border-color: rgb(212, 205, 205);
+}
+.google-icon{
+  width: 55px;
+  height: 55px;
+  transition: 0.2s;
+  background-color: white;
+  border-radius: 50px;
+  border-style: none;
+}
+.google-icon:hover{
+  transform: scale(1.1);
+  box-shadow: 0 0 2rem rgba(0 0 0 / .3);
+
+}
+.principal-button-dark{
+  margin-top: 40px;
+  width: 280px;
+  height: 50px;
+  background-color: rgb(31,13,58);;
+  color: white;
+  font-size: large;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: 10px 5px 5px rgba(37, 37, 37, 0.1);
+  
+}
+.principal-button-dark:hover{
+  background-color:rgba(0,212,255,1);
+  color: black;
+  transform: scale(1.05);
+  cursor: pointer;
+
+}
+
+#backP{
+  display: flex;
+  margin-left: 35px;
+  text-align: center;
+  width: 33px;
+  height: 25px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+
+
+/* Pag de Login */
+
+.title-two{
+  color: white;
+  font-size: larger;
+  
+  padding-right: 100px;
+}
+span{
+  font-size: small;
+}
+.sing-in-form{
+  width: 325px;
+  height: 650px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.correo, .password{
+  border: 1px solid white;
+  background-color: transparent;
+}
+.correo, .password::placeholder {
+  color: white;
+}
+.logo-blanco{
+  margin-left: 120px;
+  background-image: url(./img/logo-blanco.png);
+  width: 180px;
+  height: 180px;
+  background-repeat: no-repeat;
+}
+.sing-in-father{
+  margin: 100px 0px 100px 0px;
+}
+.sing-in-title{
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .register-presentation{
+  margin: 40px;
+  width: 570px;
+  height: 950px;
+  background-color: white;
+}
+.register-form{
+  margin: 40px;
+  width: 650px;
+  height: 950px;
+  background-color: white;
+  border-radius: 10px;
+  
+}
+
+input{
+  margin-top: 20px ;
+  width: 445px;
+  height: 70px;
+  border-radius: 5px;
+  border-style: solid;
+  font-size: larger;
+}
+
+hr{
+  margin: 50px 90px 50px ;
+  width: 445px;
+  border-color: rgb(212, 205, 205);
+}
+.google-icon{
+  width: 40px;
+  height: 40px;
+  transition: 0.2s;
+
+}
+.google-icon:hover{
+  transform: scale(1.05);
+  box-shadow: 0 0 2rem rgba(0 0 0 / .3);
+
+}
+.x{
+  padding-top: 40px;
+  margin: 0px;
+  color: rgb(212, 205, 205) ;
+  font-size: larger;
+}
+/*.input-wrapper {
+  position: relative;
+  width: 271px;
+}
+
+.input {
+  box-sizing: border-box;
+  color: #191919;
+  padding: 15px 15px 15px 35px;
+  width: 100%;
+}
+
+
+
+.icon {
+  color: #191919;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+ Botones
+ .principal-button {
+  margin-top: 50px;
+  width: 445px;
+  height: 56px;
     --green: #1BFD9C;
     font-size: 15px;
     padding: 0.7em 2.7em;
@@ -44,17 +352,18 @@ button {
     transition: all 0.3s;
     line-height: 1.4em;
     border: 2px solid var(--green);
+    
     background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
     color: var(--green);
     box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
   }
   
-  button:hover {
+  .principal-button:hover {
     color: #82ffc9;
     box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
   }
   
-  button:before {
+  .principal-button:before {
     content: "";
     position: absolute;
     left: -4em;
@@ -65,17 +374,91 @@ button {
     background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
   }
   
-  button:hover:before {
+  .principal-button:hover:before {
     transform: translateX(15em);
-  }
+  } 
 
+.principal-button{
+  margin-top: 550px;
+  width: 300px;
+  height: 56px;
+  background-color: #1F0D3A;
+  color: white;
+  font-size: large;
+  border-radius: 5px;
+  border-style: none;
+  box-shadow: 10px 5px 5px rgba(182, 180, 180, 0.5);
+  position: absolute;
+  z-index: 0;
+  
 
-@media (max-width: 390px) {
+  
+}
+.principal-button:hover{
+  background-color: #1BFD9C;
+  color: black;
+  transform: scale(1.05);
 
-    body {
-      display: flex;
-      flex-direction: column;
-      width: 390px;
-      height: 100;
-      margin-top: 25px;
-    }}
+}
+
+.google-icon{
+  border-style: none;
+  border-radius: 50px;
+  
+  transform: scale(1.5);
+}
+
+.google{
+  background-color: white;
+  
+}
+  
+.div-post{
+  margin-top: 50px;
+  width: 100%;
+  background-color: white;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  
+}
+textarea{
+
+  width: 80%;
+  min-height: 50px;
+  align-items: center;
+  border-style: solid;
+  
+}
+nav{
+  margin-top: 5px;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  
+}
+
+main{
+  width: 100%;
+  min-height: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h2{
+  margin: 50px;
+}
+section{
+  width: 80%;
+  
+
+}
+ul{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style-type: none;
+} */
+    

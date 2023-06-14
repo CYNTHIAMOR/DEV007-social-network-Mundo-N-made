@@ -2,13 +2,15 @@
 import { Home } from './components/Home.js';
 import { Register } from './components/Register.js';
 import { Login } from './components/Login.js';
+import { Post } from './components/Post.js';
 
 const rootDiv = document.getElementById('root');
-
 const routes = {
   '/': Home,
-  '/register': Register,
   '/login': Login,
+  '/post': Post,
+  '/register': Register,
+
 };
 
 export const onNavigate = (pathname) => {
