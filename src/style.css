@@ -6,21 +6,10 @@
     font-family: "Open Sans", sans-serif;
 
 }
-  
+
 body{
-      background: rgb(31,13,58);
-        background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
-      background-repeat: no-repeat;
-      width: 355px;
-      height: 812px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      
   background: rgb(31,13,58);
-    background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
+  background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
   background-repeat: no-repeat;
   width: 355px;
   height: 812px;
@@ -31,13 +20,28 @@ body{
   text-align: center;
   
 }
-  
- h1{
-     
-      font-size: larger;
-      font-weight: 700;
-      padding: 40px;
- }
+.nav-button{
+  background-color: transparent;
+  border: none;
+}
+
+.menu{
+  background-color: #E7E7E9;
+  width: 355px;
+  position: absolute;
+
+
+}
+
+.container-nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+
+
 
 .title-one{
  
@@ -46,12 +50,7 @@ body{
   padding: 40px;
   
 }
-.HomeDiv{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0px;
-}
+
 
 .HomeDivOne{
 
@@ -82,11 +81,38 @@ body{
   margin-left: 170px;
   position: absolute;
 }
+.HomeDivTwo{
+  margin-top: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  
+}
+.principal-button{
+  width: 280px;
+  height: 50px;
+  background-color: white;
+  color:black;
+  font-size: large;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: 10px 5px 5px rgba(37, 37, 37, 0.1);
+  
+}
+.principal-button:hover{
+  background-color: rgb(31,13,58);
+  color: white;
+  transform: scale(1.05);
+  cursor: pointer;
 
-/*.register{
+}
+
+.register-div{
 
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  text-align: center;
   justify-content: center;
   color: white;
 
@@ -231,12 +257,37 @@ span{
   margin: 100px 0px 100px 0px;
 }
 
+/* Pag de Post */
 
+.container-presentation{
+  width: 355px;
+  height: 90px;
+  background: linear-gradient(90deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%);
+  border-radius: 0 0 30px 0;
+  padding-top: 30px;
+  padding-left: 20px;
+}
 
+.container-background{
+  background-color: #F5F5F5;
+  width: 355px;
+  min-height: 812px;
+}
 
+.container-logo{
+  background-image: url(./img/logo-post-movil.png);
+  height: 100px;
+  width: 180px;
+  background-repeat: no-repeat;
+  padding-top:100px;
 
+}
 
-
+.container-close{
+ background-color: red;
+  height: 30px;
+  width: 30px;
+}
 
 
 
@@ -253,16 +304,15 @@ span{
   background-color: white;
 }
 .register-form{
-  display: flex;
-  flex-direction: column;
   margin: 40px;
   width: 650px;
   height: 950px;
   background-color: white;
   border-radius: 10px;
-  z-index: calc(100);
+  
 }
-.input{
+
+input{
   margin-top: 20px ;
   width: 445px;
   height: 70px;
@@ -286,7 +336,6 @@ hr{
   transform: scale(1.05);
   box-shadow: 0 0 2rem rgba(0 0 0 / .3);
 
-
 }
 .x{
   padding-top: 40px;
@@ -294,7 +343,7 @@ hr{
   color: rgb(212, 205, 205) ;
   font-size: larger;
 }
-.input-wrapper {
+/*.input-wrapper {
   position: relative;
   width: 271px;
 }
@@ -309,9 +358,7 @@ hr{
 
 
 .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #191919;
   position: absolute;
   width: 20px;
   height: 20px;
@@ -319,7 +366,6 @@ hr{
   top: 50%;
   transform: translateY(-50%);
 }
-
 
 
 form{
@@ -454,5 +500,5 @@ ul{
   flex-direction: row;
   justify-content: space-between;
   list-style-type: none;
-} 
-  
+} */
+    

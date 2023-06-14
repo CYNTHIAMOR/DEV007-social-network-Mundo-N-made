@@ -12,4 +12,27 @@ export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate
       }
     });
 // .catch((err) => { alert('hola'); });
-}
+
+/*function createPost(title, content) {
+  db.collection('posts')
+    .add({
+      title: title,
+      content: content,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(onNavigate)
+    })
+    .then((docRef) => {
+      console.log('Post creado con ID:', docRef.id);
+    })
+    .catch((error) => {
+      console.error('Error al crear el post:', error);
+    });
+    const newPostTitle = 'Título del nuevo post';
+const newPostContent = 'Contenido del nuevo post';
+
+createPost(newPostTitle, newPostContent);
+}*/
+
+
+
+
+};
