@@ -1,3 +1,5 @@
+import { createPost } from "../lib";
+
 export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
   const buttonBack = document.createElement('button');
@@ -78,10 +80,33 @@ export const Post = (onNavigate) => {
   HomeDiv.querySelector('#printerPostButton').addEventListener('click', () => {
     const textAreaContainer = HomeDiv.querySelector('#textAreaPost').value
     console.log(textAreaContainer)
+
+
+
+
+
+    createPost(textAreaContainer).then(()=>{
+      textAreaContainer= "";
+      HomeDiv.querySelector('#printerPost').innerHTML='';
+      obtenTodosLosPost().then((querySnapshot) =>{
+        querySnapshot.forEach((doc) => {
+          HomeDiv.querySelector('#printerPost').innerHTML+=`
+          <div class="printer-post">
+            <h4> ${doc.data().usuario}</h4>
+            <p> ${doc.data().contenido}</p>
+           
+          </div>`       
+        });
+      })
+    })
+
+
+
   })
 
 
-
-
   return HomeDiv;
-};
+}
+
+
+

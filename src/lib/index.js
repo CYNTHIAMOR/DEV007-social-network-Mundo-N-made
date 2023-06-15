@@ -17,9 +17,11 @@ export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate
 
 // post
 
-export const createPost = (text) => {
+export const createPost = (contenido) => {
   addDoc(collection(db, "posts"),{
     container:contenido,
-    usuario:auth.currenUser.email,
+    usuario:auth.currentUser.email,
   })
 }
+
+signInWithEmailAndPassword(auth, email, password);
