@@ -19,6 +19,7 @@ export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate
 
 export const createPost = (text) => {
   addDoc(collection(db, "posts"),{
-    container:
+    container:contenido,
+    usuario:auth.currenUser.email,
   })
 }
