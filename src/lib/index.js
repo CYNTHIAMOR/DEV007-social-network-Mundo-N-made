@@ -1,7 +1,8 @@
 // aqui exportaras las funciones que necesites
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import { addDoc, collection } from 'firebase/firestore';
 
 export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate) {
   createUserWithEmailAndPassword(auth, email, contraseña)
@@ -12,4 +13,12 @@ export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate
       }
     });
 // .catch((err) => { alert('hola'); });
+}
+
+// post
+
+export const createPost = (text) => {
+  addDoc(collection(db, "posts"),{
+    container:
+  })
 }
