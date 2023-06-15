@@ -3,6 +3,7 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { addDoc, collection } from 'firebase/firestore';
+import { GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 
 export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate) {
   createUserWithEmailAndPassword(auth, email, contraseña)
@@ -24,4 +25,13 @@ export const createPost = (contenido) => {
   })
 }
 
-signInWithEmailAndPassword(auth, email, password);
+export const initSessionsWithGoogle = () => {
+  const provider = new GoogleAuthProvider();
+
+
+  return signInWithPopup(auth, provider)
+}
+
+
+
+//signInWithEmailAndPassword(auth, email, password);
