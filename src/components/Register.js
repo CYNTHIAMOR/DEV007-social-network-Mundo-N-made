@@ -1,4 +1,5 @@
 import { crearUsuarioConCorreoYContraseña } from '../lib';
+import { Post } from './Post';
 
 export const Register = (onNavigate) => {
   const HomeDiv = document.createElement('div');

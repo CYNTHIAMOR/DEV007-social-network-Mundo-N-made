@@ -1,9 +1,10 @@
 
 //import firebase from 'firebase/app';
-import 'firebase/firestore';
+//import 'firebase/firestore';
 export const Post = (onNavigate) => {
+
   const HomeDiv = document.createElement('div');
-  const buttonBack = document.createElement('button');
+ // const buttonBack = document.createElement('button');
 
   /* const postArea = HomeDiv.querySelector('#post').value;
   const printerPost = HomeDiv.querySelector('#printerPost');
@@ -13,7 +14,7 @@ export const Post = (onNavigate) => {
     printerPost.innerHTML += postArea;
   }); */
 
-  buttonBack.textContent = 'Cerrar Sesión';
+ // buttonBack.textContent = 'Cerrar Sesión';
 
   HomeDiv.textContent = 'Bienvenida al Post';
 
@@ -72,20 +73,24 @@ export const Post = (onNavigate) => {
  </div>
     `;
 
-  buttonBack.addEventListener('click', () => onNavigate('/'));
+  //buttonBack.addEventListener('click', () => onNavigate('/'));
 
-  HomeDiv.appendChild(buttonBack);
+  //HomeDiv.appendChild(buttonBack);
 
   //POST
 
-  HomeDiv.querySelector('#printerPostButton').addEventListener('click', () => {
+HomeDiv.querySelector('#printerPostButton').addEventListener('click', () => {
     const textAreaContainer = HomeDiv.querySelector('#textAreaPost').value
     console.log(textAreaContainer)
-  })
+      
 
+  });
 
+  }
+{
 
 
   return HomeDiv;
+}
 
-};
+

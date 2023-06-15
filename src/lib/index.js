@@ -2,7 +2,7 @@
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase';
-import { addDoc, collection } from 'firebase/firestore';
+//import { addDoc, collection } from 'firebase/firestore';
 
 export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate) {
   createUserWithEmailAndPassword(auth, email, contraseña)
@@ -12,10 +12,18 @@ export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate
         onNavigate('/post');
       }
     });
-// .catch((err) => { alert('hola'); });
-<<<<<<< HEAD
 
-/*function createPost(title, content) {
+}
+// .catch((err) => { alert('hola'); });
+// post
+
+export const createPost = (text) => {
+ return addDoc(collection(db, "posts"),{
+  contenido: contenido, 
+  usuario: auth.currentUser.email,
+ });
+}
+/*export function createPost(title, content) {
   db.collection('posts')
     .add({
       title: title,
@@ -33,19 +41,3 @@ const newPostContent = 'Contenido del nuevo post';
 
 createPost(newPostTitle, newPostContent);
 }*/
-
-
-
-
-};
-=======
-}
-
-// post
-
-export const createPost = (text) => {
-  addDoc(collection(db, "posts"),{
-    container:
-  })
-}
->>>>>>> aad81b6a7244067abb883d68b7f15851f95f941d
