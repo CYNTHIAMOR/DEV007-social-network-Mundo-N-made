@@ -1,6 +1,9 @@
 
 //import firebase from 'firebase/app';
 //import 'firebase/firestore';
+import { createPost } from "../lib";
+
+
 export const Post = (onNavigate) => {
 
   const HomeDiv = document.createElement('div');
@@ -49,7 +52,10 @@ export const Post = (onNavigate) => {
             <div> <button class="compartir" id="printerPostButton">Compartir</button></div>
           </div>
           </div>
-        <div class="printer-post" id="printerPost"></div>
+          
+        <div class="printer-posts" id="printerPosts">
+
+        </div>
     </section>
   </main>
 
@@ -82,11 +88,32 @@ export const Post = (onNavigate) => {
 HomeDiv.querySelector('#printerPostButton').addEventListener('click', () => {
     const textAreaContainer = HomeDiv.querySelector('#textAreaPost').value
     console.log(textAreaContainer)
-      
+
+
+
+
+    
+    createPost(textAreaContainer).then(()=>{
+      textAreaContainer= "";
+      HomeDiv.querySelector('#printerPost').innerHTML='';
+      obtenTodosLosPost().then((querySnapshot) =>{
+        querySnapshot.forEach((doc) => {
+          HomeDiv.querySelector('#printerPost').innerHTML+=`
+          <div class="printer-post">
+            <h4> ${doc.data().usuario}</h4>
+            <p> ${doc.data().contenido}</p>
+           
+          </div>`       
+        });
+      })
+    })
+
+
+
+  })
 
   });
-
-  }
+ }
 {
 
 

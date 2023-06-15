@@ -1,3 +1,5 @@
+import { initSessionsWithGoogle } from "../lib";
+
 export const Login = (onNavigate) => {
   const HomeDiv = document.createElement('div');
 
@@ -39,7 +41,12 @@ export const Login = (onNavigate) => {
   
  `;
   const buttonSubmitSingIn = HomeDiv.querySelector('#buttonSubmitSingIn');
-
+  const buttonGoogle = HomeDiv.querySelector('.google-icon');
+  buttonGoogle.addEventListener('click', () =>{
+    initSessionsWithGoogle().then(() =>{
+      onNavigate('/post');
+    })
+  })
   // const inputEmail = HomeDiv.querySelector('#input-email');
   // const inputPassword = HomeDiv.querySelector('#input-password');
 

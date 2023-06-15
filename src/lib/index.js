@@ -2,7 +2,8 @@
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase';
-//import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
+import { GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 
 export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate) {
   createUserWithEmailAndPassword(auth, email, contraseña)
@@ -17,27 +18,20 @@ export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate
 // .catch((err) => { alert('hola'); });
 // post
 
-export const createPost = (text) => {
- return addDoc(collection(db, "posts"),{
-  contenido: contenido, 
-  usuario: auth.currentUser.email,
- });
+export const createPost = (contenido) => {
+  addDoc(collection(db, "posts"),{
+    container:contenido,
+    usuario:auth.currentUser.email,
+  })
 }
-/*export function createPost(title, content) {
-  db.collection('posts')
-    .add({
-      title: title,
-      content: content,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(onNavigate)
-    })
-    .then((docRef) => {
-      console.log('Post creado con ID:', docRef.id);
-    })
-    .catch((error) => {
-      console.error('Error al crear el post:', error);
-    });
-    const newPostTitle = 'Título del nuevo post';
-const newPostContent = 'Contenido del nuevo post';
 
-createPost(newPostTitle, newPostContent);
-}*/
+export const initSessionsWithGoogle = () => {
+  const provider = new GoogleAuthProvider();
+
+
+  return signInWithPopup(auth, provider)
+}
+
+
+
+//signInWithEmailAndPassword(auth, email, password);
