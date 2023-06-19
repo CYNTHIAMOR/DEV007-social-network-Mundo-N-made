@@ -113,9 +113,7 @@ HomeDiv.querySelector('#printerPostButton').addEventListener('click', () => {
   })
 
   });
- }
 {
-
 
   return HomeDiv;
 }
