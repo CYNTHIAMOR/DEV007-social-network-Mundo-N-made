@@ -1,7 +1,4 @@
-
-//import firebase from 'firebase/app';
-//import 'firebase/firestore';
-import { createPost } from "../lib";
+import { createPost } from '../lib';
 
 
 export const Post = (onNavigate) => {
@@ -28,9 +25,9 @@ export const Post = (onNavigate) => {
 
 </div>
  
-  <main class="main-post"> 
+  <main > 
 
-    <section>
+    <section class="section-post">
     
       <div class="div-post" id="divPost">
       <div class="container-name-picture"> 
@@ -53,9 +50,9 @@ export const Post = (onNavigate) => {
           </div>
           </div>
           
-        <div class="printer-posts" id="printerPosts">
-
-        </div>
+    </section>
+    <section class="section-post">
+        <div class="printer-post" id="printerPost">holaaaaaaaaaaaaaaaaaaaaaaaaa</div>
     </section>
   </main>
 
@@ -83,39 +80,25 @@ export const Post = (onNavigate) => {
 
   //HomeDiv.appendChild(buttonBack);
 
-  //POST
+  // POST
 
-HomeDiv.querySelector('#printerPostButton').addEventListener('click', () => {
-    const textAreaContainer = HomeDiv.querySelector('#textAreaPost').value
-    console.log(textAreaContainer)
-
-
-
-
-    
-    createPost(textAreaContainer).then(()=>{
-      textAreaContainer= "";
-      HomeDiv.querySelector('#printerPost').innerHTML='';
-      obtenTodosLosPost().then((querySnapshot) =>{
+  HomeDiv.querySelector('#printerPostButton').addEventListener('click', () => {
+    const textAreaContainer = HomeDiv.querySelector('#textAreaPost').value;
+    console.log(textAreaContainer);
+    createPost(textAreaContainer).then(() => {
+      
+      /* obtenTodosLosPost().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          HomeDiv.querySelector('#printerPost').innerHTML+=`
+          HomeDiv.querySelector('#printerPost').innerHTML += `
           <div class="printer-post">
             <h4> ${doc.data().usuario}</h4>
             <p> ${doc.data().contenido}</p>
-           
-          </div>`       
+
+          </div>`;
         });
-      })
-    })
-
-
-
-  })
-
+      }); */
+    });
   });
-{
 
   return HomeDiv;
-}
-
-
+};

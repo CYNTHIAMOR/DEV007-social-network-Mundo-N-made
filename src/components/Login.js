@@ -1,4 +1,4 @@
-import { initSessionsWithGoogle } from "../lib";
+import { initSessionsWithGoogle, signIn, initSessionsWithFacebook } from '../lib';
 
 export const Login = (onNavigate) => {
   const HomeDiv = document.createElement('div');
@@ -30,32 +30,50 @@ export const Login = (onNavigate) => {
           <input id='input-password' placeholder='Contraseña' class="input password" type='password'>
         
         </form>
-        
+        <span class="alertLogInSignUp" id="alertLogInSignUp"></span>
         <div>
         <hr> 
-        <div><button class="google-icon"> <img class="google" src="./img/logo-google.png"></button></div> 
+        <div class="singin-google-facebook">
+      <button class="google-facebook-icon" id="google-icon"> <img class="google" src="./img/logo--google.png"></button>
+      <button class="google-facebook-icon" id="facebook-icon"> <img class="facebook" src="./img/logo-facebook.png"></button>
+      </div> 
         <div><button class="principal-button" id="buttonSubmitSingIn">Iniciar Sesión</button></div>
         </div>
     </div>
   </div>
   
  `;
-  const buttonSubmitSingIn = HomeDiv.querySelector('#buttonSubmitSingIn');
-  const buttonGoogle = HomeDiv.querySelector('.google-icon');
-  buttonGoogle.addEventListener('click', () =>{
-    initSessionsWithGoogle().then(() =>{
-      onNavigate('/post');
-    })
-  })
-  // const inputEmail = HomeDiv.querySelector('#input-email');
-  // const inputPassword = HomeDiv.querySelector('#input-password');
 
-  buttonSubmitSingIn.addEventListener('click', () => {
-    onNavigate('/post');
-   // e.preventDefault();
-    /* crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value).then(() => {
-      onNavigate('/login');
-    }); */
+  const buttonSubmitSingIn = HomeDiv.querySelector('#buttonSubmitSingIn');
+
+  if (buttonSubmitSingIn) {
+    buttonSubmitSingIn.addEventListener('click', () => {
+      const inputEmail = HomeDiv.querySelector('#input-email').value;
+      const inputPassword = HomeDiv.querySelector('#input-password').value;
+      const alertLogInSignUp = HomeDiv.querySelector('#alertLogInSignUp');
+      alertLogInSignUp.classList.remove('alertSignUpOk');
+      if (inputEmail === '') {
+        alertLogInSignUp.innerText = '⚠️ Debe ingresar su email';
+      } else if (inputPassword === '') {
+        alertLogInSignUp.innerText = '⚠️ Debe ingresar su contraseña';
+      } else {
+        signIn(inputEmail, inputPassword, onNavigate);
+      }
+    });
+  }
+
+  const buttonGoogle = HomeDiv.querySelector('#google-icon');
+  buttonGoogle.addEventListener('click', () => {
+    initSessionsWithGoogle().then(() => {
+      onNavigate('/post');
+    });
+  });
+  const buttonFacebook = HomeDiv.querySelector('#facebook-icon');
+  buttonFacebook.addEventListener('click', () => {
+    // console.log(initSessionsWithFacebook);
+    initSessionsWithFacebook().then(() => {
+      onNavigate('/post');
+    });
   });
 
   const buttonBack = HomeDiv.querySelector('#backP');
