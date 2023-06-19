@@ -1,4 +1,4 @@
-import { crearUsuarioConCorreoYContraseña } from '../lib';
+import { crearUsuarioConCorreoYContraseña, initSessionsWithGoogle, initSessionsWithFacebook } from '../lib';
 
 export const Register = (onNavigate) => {
   const HomeDiv = document.createElement('div');
@@ -31,7 +31,10 @@ export const Register = (onNavigate) => {
       </form>
     
       <hr>
-      <div><button class="google-icon"> <img class="google" src="./img/logo-google.png"></button></div> 
+      <div class="singin-google-facebook">
+      <button class="google-facebook-icon" id="google-icon"> <img class="google" src="./img/logo--google.png"></button>
+      <button class="google-facebook-icon" id="facebook-icon"> <img class="facebook" src="./img/logo-facebook.png"></button>
+      </div> 
       <div><button class="principal-button-dark" id="buttonSubmitRegister">Registrarse</button></div>
     
       </div>  
@@ -50,12 +53,23 @@ export const Register = (onNavigate) => {
     onNavigate('/');
   });
 
+  const buttonGoogle = HomeDiv.querySelector('#google-icon');
+  buttonGoogle.addEventListener('click', () => {
+    initSessionsWithGoogle().then(() => {
+      onNavigate('/post');
+    });
+  });
+  const buttonFacebook = HomeDiv.querySelector('#facebook-icon');
+  buttonFacebook.addEventListener('click', () => {
+    // console.log(initSessionsWithFacebook);
+    initSessionsWithFacebook().then(() => {
+      onNavigate('/post');
+    });
+  });
+
   buttonSubmitRegister.addEventListener('click', (e) => {
     e.preventDefault();
     crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value, onNavigate);
   });
-
-
-
   return HomeDiv;
 };

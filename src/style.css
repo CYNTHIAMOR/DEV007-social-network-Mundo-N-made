@@ -175,7 +175,14 @@ hr{
   width: 220px;
   border-color: rgb(212, 205, 205);
 }
-.google-icon{
+.singin-google-facebook{
+  margin: 0 20px 0 50px;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.google-facebook-icon{
   width: 55px;
   height: 55px;
   transition: 0.2s;
@@ -183,7 +190,7 @@ hr{
   border-radius: 50px;
   border-style: none;
 }
-.google-icon:hover{
+.google-facebook-icon:hover{
   transform: scale(1.1);
   box-shadow: 0 0 2rem rgba(0 0 0 / .3);
 
@@ -295,7 +302,7 @@ span{
 
 }
 
-.main-post{
+.section-post{
   margin-top: 10px;
   background-color: #ffff;
   border-radius: 8px;
