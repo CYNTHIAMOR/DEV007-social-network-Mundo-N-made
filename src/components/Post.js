@@ -122,17 +122,17 @@ export const Post = (onNavigate) => {
                                   </div>
                                   </div>`;
       });
-      borrarPost();
+      deletePost();
     });
 
-    function borrarPost() {
+    function deletePost() {
       const card = printerPost.querySelector('.card');
       const btnsDelete = card.querySelectorAll('.btn-delete');
       btnsDelete.forEach((btn) => {
         btn.addEventListener('click', async () => {
           try {
-            console.log(btn.id);
-            await deletePost(btn.id);
+            console.log(btn.dataset.id);
+            await deletePost(btn.dataset.id);
           } catch (error) {
             console.log(error);
           }
