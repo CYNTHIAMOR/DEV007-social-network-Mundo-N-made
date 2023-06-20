@@ -70,10 +70,23 @@ export const createPost = (contenido) => {
 
 // OBTENER DATA DE POSTS FIRESTORE
 
-export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts', callback)); //ojo verificar
+export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback); //ojo verificar
 
 export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
 export const getPosts = () => getDocs(collection(db, 'posts'));
 
-export const deleteTask = (id) => deleteDoc(doc(db, 'posts', id));
+export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
+/*
+// ADD LIKE
+export const addLikeArr = (idPost, uid) => (
+  firebase.firestore().collection('posts').doc(idPost)
+    .update({ likes: firebase.firestore.FieldValue.arrayUnion(uid) })
+);
+
+// REMOVE LIKE
+export const removeLikeArr = (idPost, uid) => (
+  firebase.firestore().collection('posts').doc(idPost)
+    .update({ likes: firebase.firestore.FieldValue.arrayRemove(uid) })
+);
+*/
