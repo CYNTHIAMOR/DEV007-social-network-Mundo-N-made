@@ -7,20 +7,31 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
 } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore'; //getDocs
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+} from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
 // CREAR USUARIO
 
-export function crearUsuarioConCorreoYContraseña(email, contraseña, onNavigate) {
-  createUserWithEmailAndPassword(auth, email, contraseña)
-    .then((result) => {
-      if (result.user) {
-        localStorage.setItem('casita', JSON.stringify(result));
-        onNavigate('/post');
-      }
-    });
-// .catch((err) => { alert('hola'); });
+export function crearUsuarioConCorreoYContraseña(
+  email,
+  contraseña,
+  onNavigate,
+) {
+  createUserWithEmailAndPassword(auth, email, contraseña).then((result) => {
+    if (result.user) {
+      localStorage.setItem('casita', JSON.stringify(result));
+      onNavigate('/post');
+    }
+  });
+  // .catch((err) => { alert('hola'); });
 }
 
 // INICIAR SESION CON CORREO Y CONTRASE;A
@@ -57,73 +68,12 @@ export const createPost = (contenido) => {
   });
 };
 
-// OBTENER LOS POST
+// OBTENER DATA DE POSTS FIRESTORE
 
-export querySnapshot = getDocs(collection(db, "users"));
-querySnapshot.then((docs)=>{
-  console.log(docs)
-});
+export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts', callback)); //ojo verificar
 
+export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
+export const getPosts = () => getDocs(collection(db, 'posts'));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* export const obtenTodosLosPost = (maa) =>{
-  db.collection("users").get().then((querySnapshot) => {
-    const post = [];
-    querySnapshot.forEach((doc) => {
-        [post.push](`${doc.id} => ${doc.data()}`);
-    });
-    maa();
-});
-} */
-
-// Posteo
-/* export const readPostHome = (callback) => {
-  firebase.firestore().collection('posts').where('privacy', '==', '1')
-   // .orderBy('orderDate', 'desc')
-    .onSnapshot((querySanpshot) => {
-      const post = [];
-      querySanpshot.forEach((doc) => {
-        post.push({ id: doc.id, ...doc.data() });
-      });
-      callback(post);
-    });
-};
-
-// READ POSTS PROFILE
-export const readPostProfile = (uid, callback) => {
-  firebase.firestore().collection('posts').where('uid', '==', uid)
-    .orderBy('orderDate', 'desc')
-    .onSnapshot((querySanpshot) => {
-      const post = [];
-      querySanpshot.forEach((doc) => {
-        post.push({ id: doc.id, ...doc.data() });
-      });
-      callback(post);
-    });
-}; */
+export const deleteTask = (id) => deleteDoc(doc(db, 'posts', id));

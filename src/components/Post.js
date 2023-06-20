@@ -1,4 +1,8 @@
-import { createPost } from '../lib';
+// import { async } from 'regenerator-runtime';
+import { async } from 'regenerator-runtime';
+import {
+  createPost, deleteTask, getPost, onGetPosts,
+} from '../lib';
 
 export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
@@ -50,7 +54,7 @@ export const Post = (onNavigate) => {
           
     </section>
     <section class="section-post">
-        <div class="printer-post" id="printerPost">holaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+        <div class="printer-post" id="printerPost"></div>
     </section>
   </main>
 
@@ -81,10 +85,62 @@ export const Post = (onNavigate) => {
   // POST
 
   HomeDiv.querySelector('#printerPostButton').addEventListener('click', () => {
+    const printerPost = HomeDiv.querySelector('#printerPost');
     const textAreaContainer = HomeDiv.querySelector('#textAreaPost').value;
     console.log(textAreaContainer);
+
     createPost(textAreaContainer).then(() => {
-      
+      console.log(querySnapshot);
+      onGetPosts((querySnapshot) => {
+        printerPost.innerHTML = '';
+
+        querySnapshot.forEach((doc) => {
+          console.log(doc, 'hola');
+          const task = doc.data();
+
+          printerPost.innerHTML += `
+      <div class="card card-body mt-2 border-primary">
+    <p>${task.contenido}</p>
+    <div>
+      <button class="btn btn-primary btn-delete" data-id="${doc.id}">
+        🗑 Delete
+      </button>
+      <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
+        🖉 Edit
+      </button>
+    </div>
+  </div>`;
+        });
+        const btnsDelete = printerPost.querySelectorAll('.btn-delete');
+        btnsDelete.forEach((btn) => btn.addEventListener('click', async ({ target: { dataset } }) => {
+          try {
+            await deleteTask(dataset.id);
+          } catch (error) {
+            console.log(error);
+          }
+        }));
+
+        let editStatus = false;
+        let id = '';
+        const btnsEdit = printerPost.querySelectorAll('.btn-edit');
+        btnsEdit.forEach((btn) => {
+          btn.addEventListener('click', async (e) => {
+            try {
+              const doc = await getPost(e.target.dataset.id);
+              const task = doc.data();
+              printerPost['task-title'].value = task.title;
+              printerPost['task-description'].value = task.description;
+
+              editStatus = true;
+              id = doc.id;
+              taskForm['btn-task-form'].innerText = 'Update';
+            } catch (error) {
+              console.log(error);
+            }
+          });
+        });
+      });
+
       /* obtenTodosLosPost().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           HomeDiv.querySelector('#printerPost').innerHTML += `
