@@ -76,7 +76,7 @@ export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
 export const getPosts = () => getDocs(collection(db, 'posts'));
 
-export const deletePost = (id) => deleteDoc(doc(db, 'posts', id));
+export const deletePosts = (id) => deleteDoc(doc(db, 'posts', id));
 /*
 // ADD LIKE
 export const addLikeArr = (idPost, uid) => (
