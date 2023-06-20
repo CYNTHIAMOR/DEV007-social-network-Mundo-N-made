@@ -18,7 +18,7 @@ export const Post = (onNavigate) => {
 
  // buttonBack.textContent = 'Cerrar Sesión';
 
-  const editStatus = false;
+  const editStatus = true;
   const id = '';
 
   HomeDiv.innerHTML = `
