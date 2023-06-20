@@ -1,4 +1,4 @@
-import { createPost } from '../lib';
+import { onGetPosts, createPost, deletePost } from '../lib';
 
 
 export const Post = (onNavigate) => {
@@ -16,7 +16,8 @@ export const Post = (onNavigate) => {
 
  // buttonBack.textContent = 'Cerrar Sesión';
 
-  HomeDiv.textContent = 'Bienvenida al Post';
+  const editStatus = false;
+  const id = '';
 
   HomeDiv.innerHTML = `
 <div class="container-background">
@@ -52,7 +53,7 @@ export const Post = (onNavigate) => {
           
     </section>
     <section class="section-post">
-        <div class="printer-post" id="printerPost">holaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+        <div class="printer-post" id="printerPost"></div>
     </section>
   </main>
 
@@ -81,12 +82,129 @@ export const Post = (onNavigate) => {
   //HomeDiv.appendChild(buttonBack);
 
   // POST
+  const printerPost = HomeDiv.querySelector('#printerPost');
 
-  HomeDiv.querySelector('#printerPostButton').addEventListener('click', () => {
+  window.addEventListener('DOMContentLoaded', async (e) => {
+    // const querySnapshot = await getPosts();
+    // querySnapshot.forEach((doc) => {
+    //   console.log(doc.data());
+    // });
+
+    onGetPosts((querySnapshot) => {
+      printerPost.innerHTML = '';
+
+      querySnapshot.forEach((doc) => {
+        console.log(doc, 'hola');
+        const task = doc.data();
+        console.log(doc.data());
+
+        printerPost.innerHTML += `
+                                  <div class="card">
+                                    <p>${task.container}</p>
+                                  <div>
+                                  <button class="btn-delete" data-id="${doc.id}">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                  <path d="M4 7l16 0" />
+                                  <path d="M10 11l0 6" />
+                                  <path d="M14 11l0 6" />
+                                  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                  </svg>
+                                  </button>
+                                  <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                  <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                                  <path d="M13.5 6.5l4 4" />
+                                </svg>
+                                  </button>
+                                  </div>
+                                  </div>`;
+      });
+      borrarPost();
+    });
+
+    function borrarPost() {
+      const card = printerPost.querySelector('.card');
+      const btnsDelete = card.querySelectorAll('.btn-delete');
+      btnsDelete.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          try {
+            console.log(btn.id);
+            await deletePost(btn.id);
+          } catch (error) {
+            console.log(error);
+          }
+        });
+      });
+    }
+
+    HomeDiv.querySelector('#printerPostButton').addEventListener(
+      'click',
+      async () => {
+        e.preventDefault();
+        const textAreaPost = HomeDiv.querySelector('#textAreaPost');
+        const textAreaContainer = textAreaPost.value;
+        createPost(textAreaContainer);
+        textAreaPost.value = '';
+
+        // .then(() => {
+        /* const printerPost = HomeDiv.querySelector('#printerPost');
     const textAreaContainer = HomeDiv.querySelector('#textAreaPost').value;
+
     console.log(textAreaContainer);
+
     createPost(textAreaContainer).then(() => {
-      
+      console.log(querySnapshot);
+      onGetPosts((querySnapshot) => {
+        printerPost.innerHTML = '';
+
+        querySnapshot.forEach((doc) => {
+          console.log(doc, 'hola');
+          const task = doc.data();
+
+          printerPost.innerHTML += `
+      <div class="card card-body mt-2 border-primary">
+    <p>${task.contenido}</p>
+    <div>
+      <button class="btn btn-primary btn-delete" data-id="${doc.id}">
+        🗑 Delete
+      </button>
+      <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
+        🖉 Edit
+      </button>
+    </div>
+  </div>`;
+        });
+        const btnsDelete = HomeDiv.querySelectorAll('.btn-delete');
+        btnsDelete.forEach((btn) => btn.addEventListener('click', async ({ target: { dataset } }) => {
+          try {
+            await deleteTask(dataset.id);
+          } catch (error) {
+            console.log(error);
+          }
+        }));
+
+        const btnsEdit = HomeDiv.querySelectorAll('.btn-edit');
+        btnsEdit.forEach((btn) => {
+          btn.addEventListener('click', async (e) => {
+            try {
+              const doc = await getPost(e.target.dataset.id);
+              const task = doc.data();
+
+              printerPost['#textAreaPost'].value = task.contenido;
+
+              editStatus = true;
+              id = doc.id;
+              printerPost['#printerPostButton'].innerText = 'Update';
+            } catch (error) {
+              console.log(error);
+            }
+          })
+        });
+      });
+
       /* obtenTodosLosPost().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           HomeDiv.querySelector('#printerPost').innerHTML += `
@@ -97,7 +215,8 @@ export const Post = (onNavigate) => {
           </div>`;
         });
       }); */
-    });
+      },
+    );
   });
 
   return HomeDiv;
