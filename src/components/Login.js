@@ -45,7 +45,8 @@ export const Login = (onNavigate) => {
  `;
 
   const buttonSubmitSingIn = HomeDiv.querySelector('#buttonSubmitSingIn');
-
+ // inicio de sesión 
+ 
   if (buttonSubmitSingIn) {
     buttonSubmitSingIn.addEventListener('click', () => {
       const inputEmail = HomeDiv.querySelector('#input-email').value;
