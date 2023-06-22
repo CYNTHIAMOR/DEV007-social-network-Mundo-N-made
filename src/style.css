@@ -263,9 +263,7 @@ span{
 .sing-in-father{
   margin: 100px 0px 100px 0px;
 }
-.sing-in-title{
- 
-}
+
 
 
 /* Pag de Post */
@@ -278,12 +276,20 @@ span{
   border-radius: 0 0 30px 0;
   padding-top: 30px;
   padding-left: 20px;
+  display: flex;
+  justify-content: space-between;
+ padding-right:30px;
+ 
+ position:fixed;
+ top:0;
 }
 
 .container-background{
-  background-color: #F5F5F5;
+  background-color: #F1F1F1;
   width: 355px;
   min-height: 812px;
+  display: flex;
+  flex-direction: row;
 }
 
 .container-logo{
@@ -294,6 +300,16 @@ span{
   padding-top:100px;
 
 }
+.btn-finish{
+  border: none;
+  background-color: transparent; 
+  margin-bottom: 35px;
+}
+.btn-finish:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  
+}
 
 .container-close{
  background-color: red;
@@ -302,11 +318,12 @@ span{
 
 }
 
+
 .section-post{
-  margin-top: 10px;
-  background-color: #ffff;
+  
+  background-color: #F5F5F5;
   border-radius: 8px;
-  padding: 20px;
+  padding: 5px;
   width: 340px;
   margin-left: 8px;
 }
@@ -360,8 +377,53 @@ h3{
 .card{
   width: 100%;
   height: auto;
-  background-color: red;
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
 }
+
+.user{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+ 
+}
+.name{
+  padding: 5px 0 0 5px  ;
+}
+.user-name{
+  display: flex;
+  flex-direction: row;
+
+}
+.btn-delete, .btn-edit{
+  background-color: transparent;
+  border: none;
+ 
+}
+.btn-delete:hover, .btn-edit:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgb(149, 154, 154);
+
+}
+.container-text-post{
+  margin-top: 10px;
+  padding: 5px;
+  text-align: left;
+  width: 100%;
+  background-color: #F5F5F5;
+  height: auto;
+  overflow: hidden;
+ 
+}
+
 
 /* .register-presentation{
   margin: 40px;
