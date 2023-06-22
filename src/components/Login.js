@@ -47,6 +47,7 @@ export const Login = (onNavigate) => {
   const buttonSubmitSingIn = HomeDiv.querySelector('#buttonSubmitSingIn');
  // inicio de sesión 
  
+
   if (buttonSubmitSingIn) {
     buttonSubmitSingIn.addEventListener('click', () => {
       const inputEmail = HomeDiv.querySelector('#input-email').value;
@@ -65,8 +66,11 @@ export const Login = (onNavigate) => {
 
   const buttonGoogle = HomeDiv.querySelector('#google-icon');
   buttonGoogle.addEventListener('click', () => {
-    initSessionsWithGoogle().then(() => {
-      onNavigate('/post');
+    initSessionsWithGoogle().then((data) => {
+      if (data){
+
+        onNavigate('/post');
+      }
     });
   });
   const buttonFacebook = HomeDiv.querySelector('#facebook-icon');

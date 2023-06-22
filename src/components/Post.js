@@ -1,5 +1,5 @@
 import {
-  onGetPosts, createPost, deletePosts, getPost,
+  onGetPosts, createPost, deletePosts, getPost, getPosts
 } from '../lib';
 
 
@@ -93,25 +93,37 @@ export const Post = (onNavigate) => {
   // POST
   const printerPost = HomeDiv.querySelector('#printerPost');
 
-  window.addEventListener('DOMContentLoaded', async (e) => {
+  // window.addEventListener('DOMContentLoaded', async (e) => {
     // const querySnapshot = await getPosts();
     // querySnapshot.forEach((doc) => {
     //   console.log(doc.data());
     // });
+    //cuando se cargue el don hare ...
+    // const postNew = onGetPosts(querySnapshot)
+    // console.log(querySnapshot)
 
-    onGetPosts((querySnapshot) => {
-      printerPost.innerHTML = '';
-
-      querySnapshot.forEach((doc) => {
-        console.log(doc, 'hola');
-        const task = doc.data();
-        console.log(doc.data());
+    
+    onGetPosts((querySnapshot)=>{
+        printerPost.innerHTML = '';
+const newArr = []
+        querySnapshot.forEach((doc) => {
+          const task = doc.data();
+          const idDoc = doc.id;
+          newArr.push([task, { id: idDoc }]);
+        });
+        const task = newArr.sort(
+          (a, b) => new Date(b[0].creationDate) - new Date(a[0].creationDate),
+        );
+        console.log(task)
+      
+        task.forEach((doc) => {
 
         printerPost.innerHTML += `
                                   <div class="card">
-                                    <p>${task.container}</p>
+                                    <p>${doc[0].container}</p>
+                                    <p>${doc[0].usuario}</p>
                                     <div>
-                                      <button class="btn-delete" data-id="${doc.id}">
+                                      <button class="btn-delete" data-id="${doc[1].id}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                           <path d="M4 7l16 0" />
@@ -121,7 +133,7 @@ export const Post = (onNavigate) => {
                                           <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                         </svg>
                                       </button>
-                                      <button class="btn-edit" data-id="${doc.id}">
+                                      <button class="btn-edit" data-id="${doc[1].id}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                           <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
@@ -133,8 +145,10 @@ export const Post = (onNavigate) => {
       });
       deletePost();
       editPost();
-    });
-  });
+    })
+    // });
+
+
 
   function deletePost() {
     const card = printerPost.querySelector('.card');
@@ -157,14 +171,14 @@ export const Post = (onNavigate) => {
     const btnsEdit = card.querySelectorAll('.btn-edit');
     btnsEdit.forEach((btn) => {
       console.log(btn);
-      btn.addEventListener('click', async (e) => {
+      btn.addEventListener('click', async () => {
         try {
-          console.log(e);
-          console.log(e.target.dataset.id);
-          const doc = await getPost(e.target.dataset.id);
+          console.log(btn.dataset.id);
+          const doc = await getPost(btn.dataset.id);
           const task = doc.data();
           console.log(doc.data(), 'hello');
           card['#textAreaPost'].value = task.container;
+          
 
           editStatus = true;
           id = doc.id;
@@ -175,7 +189,6 @@ export const Post = (onNavigate) => {
       });
     });
   }
-
   HomeDiv.querySelector('#printerPostButton').addEventListener(
     'click',
     async (e) => {

@@ -65,6 +65,7 @@ export const createPost = (contenido) => {
   addDoc(collection(db, 'posts'), {
     container: contenido,
     usuario: auth.currentUser.email,
+    creationDate: new Date()
   });
 };
 
