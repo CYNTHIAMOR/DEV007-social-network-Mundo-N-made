@@ -13,7 +13,7 @@ export const Post = (onNavigate) => {
   }); */
   // buttonBack.textContent = 'Cerrar Sesión';
   let editStatus = true;
-  const id = '';
+  let id = '';
   HomeDiv.innerHTML = `
 <div class="container-background">
 <div class="container-presentation">
@@ -166,27 +166,29 @@ export const Post = (onNavigate) => {
 
 
   function editPost() {
-    const card = printerPost.querySelector('.card');
-    const btnsEdit = card.querySelectorAll('.btn-edit');
+    const btnsEdit = document.body.querySelectorAll('.btn-edit');
     btnsEdit.forEach((btn) => {
-      console.log(btn);
+      console.log(btn, "mama1");
       btn.addEventListener('click', async () => {
         try {
-          console.log(btn.dataset.id);
+          console.log(btn.dataset.id, "mama2");
           const doc = await getPost(btn.dataset.id);
           const task = doc.data();
-          console.log(doc.data(), 'hello');
-          card['#textAreaPost'].value = task.container;
+          console.log(doc.data().container, 'mama3');
+          const am = document.querySelector('#textAreaPost');
+         console.log(am.value, "mama4");
+         am.value = doc.data().container
+         
           editStatus = true;
           id = doc.id;
-          card['#printerPostButton'].innerText = 'Update';
+          HomeDiv.querySelector("#printerPostButton").innerText = 'Update';
+          HomeDiv.querySelector("#printerPostButton").removeEventListener("click")
         } catch (error) {
           console.log(error);
         }
       });
     });
   }
-
   
   HomeDiv.querySelector('#printerPostButton').addEventListener(
     'click',
