@@ -64,6 +64,7 @@ export const initSessionsWithFacebook = () => {
 export const createPost = (contenido) => {
   addDoc(collection(db, 'posts'), {
     container: contenido,
+    date: Date.now(),
     usuario: auth.currentUser.email,
     creationDate: new Date()
   });

@@ -3,15 +3,16 @@ import {
 } from '../lib';
 export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
- // const buttonBack = document.createElement('button');
+  HomeDiv.classList.add('all')
+  // const buttonBack = document.createElement('button');
   /* const postArea = HomeDiv.querySelector('#post').value;
   const printerPost = HomeDiv.querySelector('#printerPost');
   const printerPostButton = HomeDiv.querySelector('#printerPostButton');
   printerPostButton.addEventListener('click', () => {
     printerPost.innerHTML += postArea;
   }); */
- // buttonBack.textContent = 'Cerrar Sesión';
-  const editStatus = true;
+  // buttonBack.textContent = 'Cerrar Sesión';
+  let editStatus = true;
   const id = '';
   HomeDiv.innerHTML = `
 <div class="container-background">
@@ -47,7 +48,7 @@ export const Post = (onNavigate) => {
           </div>
           </div>
     </section>
-    <section class="section-post">
+    <section class="section-post-history">
         <div class="printer-post" id="printerPost"></div>
     </section>
   </main>
@@ -69,65 +70,89 @@ export const Post = (onNavigate) => {
   </nav>
  </div>
     `;
-  //buttonBack.addEventListener('click', () => onNavigate('/'));
-  //HomeDiv.appendChild(buttonBack);
+    const btnFinish = HomeDiv.querySelector('.btn-finish');
+    btnFinish.addEventListener('click', () => onNavigate('/'));
+  
+  // buttonBack.addEventListener('click', () => onNavigate('/'));
+  // HomeDiv.appendChild(buttonBack);
   // POST
   const printerPost = HomeDiv.querySelector('#printerPost');
   // window.addEventListener('DOMContentLoaded', async (e) => {
-    // const querySnapshot = await getPosts();
-    // querySnapshot.forEach((doc) => {
-    //   console.log(doc.data());
-    // });
-    //cuando se cargue el don hare ...
-    // const postNew = onGetPosts(querySnapshot)
-    // console.log(querySnapshot)
-    onGetPosts((querySnapshot)=>{
-        printerPost.innerHTML = '';
-const newArr = []
-        querySnapshot.forEach((doc) => {
-          const task = doc.data();
-          const idDoc = doc.id;
-          newArr.push([task, { id: idDoc }]);
-        });
-        const task = newArr.sort(
-          (a, b) => new Date(b[0].creationDate) - new Date(a[0].creationDate),
-        );
-        console.log(task)
-        task.forEach((doc) => {
-        printerPost.innerHTML += `
-                                  <div class="card">
-                                    <p>${doc[0].container}</p>
-                                    <p>${doc[0].usuario}</p>
-                                    <div>
-                                      <button class="btn-delete" data-id="${doc[1].id}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  // const querySnapshot = await getPosts();
+  // querySnapshot.forEach((doc) => {
+  //   console.log(doc.data());
+  // });
+  // cuando se cargue el don hare ...
+  // const postNew = onGetPosts(querySnapshot)
+  // console.log(querySnapshot)
+  onGetPosts((querySnapshot) => {
+    printerPost.innerHTML = '';
+    const newArr = [];
+    querySnapshot.forEach((doc) => {
+      const task = doc.data();
+      const idDoc = doc.id;
+      newArr.push([task, { id: idDoc }]);
+    });
+    
+
+    
+    const task = newArr.sort(
+      (a, b) => b[0].date - a[0].date,
+    );
+
+    console.log(task);
+    task.forEach((doc) => {
+      printerPost.innerHTML += `
+                                 <div class="card">
+
+                                    <div class="user">
+                                      <div class="user-name">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                          <path d="M4 7l16 0" />
-                                          <path d="M10 11l0 6" />
-                                          <path d="M14 11l0 6" />
-                                          <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                          <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                          <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                          <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                          <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
                                         </svg>
-                                      </button>
-                                      <button class="btn-edit" data-id="${doc[1].id}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                          <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
-                                          <path d="M13.5 6.5l4 4" />
-                                        </svg>
-                                      </button>
+                                        <p class="name">${doc[0].usuario}</p>
+                                       
+                                      </div>
+                                     
+                                      <div>
+                                        <button class="btn-delete" data-id="${doc[1].id}">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M4 7l16 0" />
+                                            <path d="M10 11l0 6" />
+                                            <path d="M14 11l0 6" />
+                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                          </svg>
+                                        </button>
+                                        <button class="btn-edit" data-id="${doc[1].id}">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                                            <path d="M13.5 6.5l4 4" />
+                                          </svg>
+                                        </button>
+                                      </div>
+                                    </div>
+                                    <div class="container-text-post">
+                                    <p >${doc[0].container}</p>
                                     </div>
                                   </div>`;
-      });
-      deletePost();
-      editPost();
-    })
-    // });
+    });
+    deletePost();
+    editPost();
+  });
+
+  // });
+
+  
   function deletePost() {
-    const card = printerPost.querySelector('.card');
-    const btnsDelete = card.querySelectorAll('.btn-delete');
+    const btnsDelete = document.body.querySelectorAll('.btn-delete');
     btnsDelete.forEach((btn) => {
-      console.log(btn, 'mamaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+
       btn.addEventListener('click', async () => {
         try {
           console.log(btn.dataset.id);
@@ -138,6 +163,8 @@ const newArr = []
       });
     });
   }
+
+
   function editPost() {
     const card = printerPost.querySelector('.card');
     const btnsEdit = card.querySelectorAll('.btn-edit');
@@ -159,6 +186,8 @@ const newArr = []
       });
     });
   }
+
+  
   HomeDiv.querySelector('#printerPostButton').addEventListener(
     'click',
     async (e) => {
