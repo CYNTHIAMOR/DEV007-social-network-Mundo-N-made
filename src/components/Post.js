@@ -4,6 +4,7 @@ import {
 
 export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
+  HomeDiv.classList.add('all')
   // const buttonBack = document.createElement('button');
   /* const postArea = HomeDiv.querySelector('#post').value;
   const printerPost = HomeDiv.querySelector('#printerPost');
@@ -12,7 +13,7 @@ export const Post = (onNavigate) => {
     printerPost.innerHTML += postArea;
   }); */
   // buttonBack.textContent = 'Cerrar Sesión';
-  const editStatus = true;
+  let editStatus = true;
   const id = '';
   HomeDiv.innerHTML = `
 <div class="container-background">
@@ -48,7 +49,7 @@ export const Post = (onNavigate) => {
           </div>
           </div>
     </section>
-    <section class="section-post">
+    <section class="section-post-history">
         <div class="printer-post" id="printerPost"></div>
     </section>
   </main>
@@ -93,9 +94,13 @@ export const Post = (onNavigate) => {
       const idDoc = doc.id;
       newArr.push([task, { id: idDoc }]);
     });
+    
+
+    
     const task = newArr.sort(
-      (a, b) => new Date(b[0].creationDate) - new Date(a[0].creationDate),
+      (a, b) => b[0].date - a[0].date,
     );
+
     console.log(task);
     task.forEach((doc) => {
       printerPost.innerHTML += `
@@ -143,11 +148,12 @@ export const Post = (onNavigate) => {
   });
 
   // });
+
+  
   function deletePost() {
-    const card = printerPost.querySelector('.card');
-    const btnsDelete = card.querySelectorAll('.btn-delete');
+    const btnsDelete = document.body.querySelectorAll('.btn-delete');
     btnsDelete.forEach((btn) => {
-      console.log(btn, 'mamaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+
       btn.addEventListener('click', async () => {
         try {
           console.log(btn.dataset.id);
@@ -158,6 +164,8 @@ export const Post = (onNavigate) => {
       });
     });
   }
+
+
   function editPost() {
     const card = printerPost.querySelector('.card');
     const btnsEdit = card.querySelectorAll('.btn-edit');
@@ -179,6 +187,8 @@ export const Post = (onNavigate) => {
       });
     });
   }
+
+  
   HomeDiv.querySelector('#printerPostButton').addEventListener(
     'click',
     async (e) => {

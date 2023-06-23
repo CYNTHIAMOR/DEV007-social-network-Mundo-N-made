@@ -19,8 +19,11 @@ export const Home = (onNavigate) => {
   buttonRegister.textContent = 'Registrate Aquí!!!';
   conditionP.textContent = 'Al presionar crear cuenta o iniciar sesión, aceptas nuestra politica de privacidad y cookies.';
 
-  /* const pictures = document.createElement('img');
-  pictures.src = './img/pictures.png'; */
+ const pictures = document.createElement('img');
+  pictures.src = './img/pictures.png';
+
+ const picturesLogo = document.createElement('img');
+  picturesLogo.src = '../img/logo-bienvenida.png';
 
   // hacemos el llamado
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
@@ -44,7 +47,7 @@ export const Home = (onNavigate) => {
   HomeDivOne.classList.add('HomeDivOne');
   HomeDivTwo.classList.add('HomeDivTwo');
   pictureDiv.classList.add('picture');
-  logoDiv.classList.add('logo');
+  logoDiv.classList.add('logo1');
   buttonLogin.classList.add('principal-button');
   registerDiv.classList.add('register-div');
   registerLabel.classList.add('register-label');
