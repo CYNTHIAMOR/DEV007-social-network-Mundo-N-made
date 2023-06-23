@@ -183,6 +183,7 @@ export const Post = (onNavigate) => {
           id = doc.id;
           HomeDiv.querySelector("#printerPostButton").innerText = 'Update';
           HomeDiv.querySelector("#printerPostButton").removeEventListener("click")
+          HomeDiv.querySelector("#printerPostButton").removeEventListener("click")
         } catch (error) {
           console.log(error);
         }
