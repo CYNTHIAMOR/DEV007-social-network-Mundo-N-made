@@ -93,9 +93,13 @@ export const Post = (onNavigate) => {
       const idDoc = doc.id;
       newArr.push([task, { id: idDoc }]);
     });
+    
+
+    
     const task = newArr.sort(
-      (a, b) => new Date(b[0].creationDate) - new Date(a[0].creationDate),
+      (a, b) => b[0].date - a[0].date,
     );
+
     console.log(task);
     task.forEach((doc) => {
       printerPost.innerHTML += `
@@ -143,11 +147,12 @@ export const Post = (onNavigate) => {
   });
 
   // });
+
+  
   function deletePost() {
-    const card = printerPost.querySelector('.card');
-    const btnsDelete = card.querySelectorAll('.btn-delete');
+    const btnsDelete = document.body.querySelectorAll('.btn-delete');
     btnsDelete.forEach((btn) => {
-      console.log(btn, 'mamaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+
       btn.addEventListener('click', async () => {
         try {
           console.log(btn.dataset.id);
@@ -158,6 +163,8 @@ export const Post = (onNavigate) => {
       });
     });
   }
+
+
   function editPost() {
     const card = printerPost.querySelector('.card');
     const btnsEdit = card.querySelectorAll('.btn-edit');
@@ -179,6 +186,8 @@ export const Post = (onNavigate) => {
       });
     });
   }
+
+  
   HomeDiv.querySelector('#printerPostButton').addEventListener(
     'click',
     async (e) => {
