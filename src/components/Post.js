@@ -4,6 +4,7 @@ import {
 
 export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
+  HomeDiv.classList.add('all')
   // const buttonBack = document.createElement('button');
   /* const postArea = HomeDiv.querySelector('#post').value;
   const printerPost = HomeDiv.querySelector('#printerPost');
@@ -12,7 +13,7 @@ export const Post = (onNavigate) => {
     printerPost.innerHTML += postArea;
   }); */
   // buttonBack.textContent = 'Cerrar Sesión';
-  const editStatus = true;
+  let editStatus = true;
   const id = '';
   HomeDiv.innerHTML = `
 <div class="container-background">
@@ -48,7 +49,7 @@ export const Post = (onNavigate) => {
           </div>
           </div>
     </section>
-    <section class="section-post">
+    <section class="section-post-history">
         <div class="printer-post" id="printerPost"></div>
     </section>
   </main>
