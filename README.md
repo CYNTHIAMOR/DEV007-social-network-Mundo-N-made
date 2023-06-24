@@ -1,6 +1,6 @@
 # MUNDO NOMADES
 
-## Índice
+## Índicexx
 
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
