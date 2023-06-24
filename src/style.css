@@ -118,7 +118,7 @@ body{
   border-radius: 8px;
   border-style: none;
   box-shadow: 10px 5px 5px rgba(37, 37, 37, 0.1);
-  
+  margin-top: 30px;
 }
 .principal-button:hover{
   background-color: rgb(31,13,58);
@@ -351,7 +351,6 @@ span{
   display: flex;
   flex-direction: column;
 }
-
 .container-background{
   background-color: #F1F1F1;
 
@@ -391,12 +390,12 @@ main{
   
 }
 
-.container-close{
+/*.container-close{
  background-color: red;
   height: 30px;
   width: 30px;
 
-}
+}*/
 
 
 .section-post{
@@ -520,16 +519,20 @@ h3{
   width: 570px;
   height: 950px;
   background-color: white;
-}
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}}
 .register-form{
   margin: 40px;
   width: 650px;
   height: 950px;
   background-color: white;
   border-radius: 10px;
-  
+  display: flex;
+justify-content: center;
 }
-
+/*
 input{
   margin-top: 20px ;
   width: 445px;
@@ -561,7 +564,7 @@ hr{
   color: rgb(212, 205, 205) ;
   font-size: larger;
 }
-/*.input-wrapper {
+.input-wrapper {
   position: relative;
   width: 271px;
 }
@@ -718,5 +721,6 @@ ul{
   flex-direction: row;
   justify-content: space-between;
   list-style-type: none;
-} */
+} 
+}*/
     

@@ -1,8 +1,7 @@
 import { doc } from 'firebase/firestore';
 import {
-  onGetPosts, createPost, deletePosts, getPost, updatePost,
+  onGetPosts, createPost, deletePosts, getPost,
 } from '../lib';
-
 export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
   HomeDiv.classList.add('all');
@@ -14,11 +13,8 @@ export const Post = (onNavigate) => {
     printerPost.innerHTML += postArea;
   }); */
   // buttonBack.textContent = 'Cerrar Sesión';
-  let editStatus = false;
-  let id = '';
-
- 
-
+  let editStatus = true;
+  const id = '';
   HomeDiv.innerHTML = `
 <div class="container-background">
 <div class="container-presentation">
@@ -155,6 +151,7 @@ export const Post = (onNavigate) => {
 
   // });
 
+
   function deletePost() {
     const btnsDelete = document.body.querySelectorAll('.btn-delete');
     btnsDelete.forEach((btn) => {
@@ -172,22 +169,17 @@ export const Post = (onNavigate) => {
   function editPost() {
     const btnsEdit = document.body.querySelectorAll('.btn-edit');
     btnsEdit.forEach((btn) => {
-      console.log(btn, 'mama1');
+      console.log(btn);
       btn.addEventListener('click', async () => {
         try {
-          console.log(btn.dataset.id, 'mama2');
+          console.log(btn.dataset.id);
           const doc = await getPost(btn.dataset.id);
           const task = doc.data();
-          console.log(doc.data().container, 'mama3');
-          const am = document.querySelector('#textAreaPost');
-          console.log(am.value, 'mama4');
-          am.value = task.container;
-          am.focus();
-
+          console.log(doc.data(), 'hello');
+          card['#textAreaPost'].value = task.container;
           editStatus = true;
-          id = btn.dataset.id;
-          console.log(id, 'mi mama me dio un manduco');
-          HomeDiv.querySelector('#printerPostButton').innerText = 'Guardar';
+          id = doc.id;
+          card['#printerPostButton'].innerText = 'Update';
         } catch (error) {
           console.log(error, 'hello1');
         }
@@ -195,10 +187,7 @@ export const Post = (onNavigate) => {
     });
   }
 
-  /* function x(){
-    HomeDiv.querySelector('#printerPostButton').removeEventListener('click', createPost());
-  } */
-
+  
   HomeDiv.querySelector('#printerPostButton').addEventListener(
     'click',
     async (e) => {

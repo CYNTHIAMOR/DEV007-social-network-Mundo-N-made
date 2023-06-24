@@ -66,6 +66,7 @@ export const createPost = (contenido) => {
     container: contenido,
     date: Date.now(),
     usuario: auth.currentUser.email,
+    creationDate: new Date()
   });
 };
 
