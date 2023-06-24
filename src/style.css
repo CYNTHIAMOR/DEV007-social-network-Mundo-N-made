@@ -143,6 +143,12 @@ body{
   font-weight: 800;
   
 }
+.log{
+  background-color: transparent;
+  border: none;
+  color: white;
+  
+}
 
 .button-register:hover{
   transform: scale(1.05);
@@ -156,7 +162,7 @@ body{
 }
 
 .condition-p{
-  margin-left: 20px;
+  
   width: 350px;
   color: white;
   font-size: 10px;
@@ -177,7 +183,15 @@ body{
   background-color: white;
   border-radius: 5px;
   text-align: center;
-  margin: 30px;
+  margin: 30px 15px 15px 15px;
+
+}
+.ad{
+  color: white;
+  font-size: medium;
+ text-align: start;
+ margin: 5px 0px 0px 50px;
+ 
 
 }
 input{
@@ -190,28 +204,39 @@ input{
   font-size: large;
   
 }
-hr{
-  margin: 50px;
-  width: 220px;
+.hr-log{
+  margin: 30px;
+  width: 295px;
+  border-color: rgb(212, 205, 205);
+}
+.hr-reg{
+  margin: 30px;
+  width: 270px;
   border-color: rgb(212, 205, 205);
 }
 .singin-google-facebook{
-  margin: 0 20px 0 50px;
+  margin: 10px 20px 0px 80px;
   width: 200px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+.reg{
+  margin: 10px 20px 10px 65px;
+}
+.alertLogInSignUp{
+  margin-bottom: 20px;
+}
 .google-facebook-icon{
   width: 55px;
   height: 55px;
   transition: 0.2s;
-  background-color: white;
+  background-color: transparent;
   border-radius: 50px;
   border-style: none;
 }
 .google-facebook-icon:hover{
-  transform: scale(1.1);
+  transform: scale(1.05);
   box-shadow: 0 0 2rem rgba(0 0 0 / .3);
 
 }
@@ -237,35 +262,55 @@ hr{
 
 #backP{
   display: flex;
-  margin-left: 35px;
+  margin: 30px 0px 0px 15px;
   text-align: center;
   width: 33px;
   height: 25px;
   background-color: white;
   border-radius: 3px;
+  cursor: pointer;
+  
+}
+#backP:hover{
+  transform: scale(1.05);
 }
 
 
 
 /* Pag de Login */
 
+.sing-in-father{
+  width: 100%;
+  height: 812px;
+}
 .title-two{
   color: white;
-  font-size: larger;
+ display: flex;
+ flex-direction: row;
+ margin: 20px 0px 0px 40px;
+ gap: 10px;
   
-  padding-right: 100px;
+}
+.init{
+  font-size: larger;
+  padding-top: 10px;
 }
 span{
   font-size: small;
 }
 .sing-in-form{
-  width: 325px;
-  height: 650px;
-  margin: 30px;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  
 }
+
+.input-form{
+  margin-bottom: 30px;
+}
+
+
 .correo, .password{
   border: 1px solid white;
   background-color: transparent;
@@ -274,14 +319,12 @@ span{
   color: white;
 }
 .logo-blanco{
-  margin-left: 120px;
+  margin-left: 125px;
+  margin-top: 30px;
   background-image: url(./img/logo-blanco.png);
   width: 180px;
   height: 180px;
   background-repeat: no-repeat;
-}
-.sing-in-father{
-  margin: 100px 0px 100px 0px;
 }
 
 

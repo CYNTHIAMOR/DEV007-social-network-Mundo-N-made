@@ -1,10 +1,11 @@
+import { doc } from 'firebase/firestore';
 import {
-  onGetPosts, createPost, deletePosts, getPost,
+  onGetPosts, createPost, deletePosts, getPost, updatePost,
 } from '../lib';
 
 export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
-  HomeDiv.classList.add('all')
+  HomeDiv.classList.add('all');
   // const buttonBack = document.createElement('button');
   /* const postArea = HomeDiv.querySelector('#post').value;
   const printerPost = HomeDiv.querySelector('#printerPost');
@@ -13,8 +14,11 @@ export const Post = (onNavigate) => {
     printerPost.innerHTML += postArea;
   }); */
   // buttonBack.textContent = 'Cerrar Sesión';
-  let editStatus = true;
-  const id = '';
+  let editStatus = false;
+  let id = '';
+
+ 
+
   HomeDiv.innerHTML = `
 <div class="container-background">
 <div class="container-presentation">
@@ -37,9 +41,9 @@ export const Post = (onNavigate) => {
     <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
     <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
     </svg></a></button>
-        <h3>Hutch Valle</h3>
+        <h3 class="name"></h3>
         </div>
-        <div><textarea placeholder="Qué quieres compartir?" class="text-area-post" name="post" id="textAreaPost" cols="30" rows="10"></textarea></div>
+        <div class="am"><textarea placeholder="Qué quieres compartir?" class="text-area-post" name="post" id="textAreaPost" cols="30" rows="10"></textarea></div>
           <div class="container-photo-post">
             <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-filled" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597E8D" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -71,9 +75,13 @@ export const Post = (onNavigate) => {
   </nav>
  </div>
     `;
-    const btnFinish = HomeDiv.querySelector('.btn-finish');
-    btnFinish.addEventListener('click', () => onNavigate('/'));
-  
+
+  const name = HomeDiv.querySelector('.name');
+  // name.innerHTML = `${usuario}`;
+
+  const btnFinish = HomeDiv.querySelector('.btn-finish');
+  btnFinish.addEventListener('click', () => onNavigate('/'));
+
   // buttonBack.addEventListener('click', () => onNavigate('/'));
   // HomeDiv.appendChild(buttonBack);
   // POST
@@ -94,9 +102,7 @@ export const Post = (onNavigate) => {
       const idDoc = doc.id;
       newArr.push([task, { id: idDoc }]);
     });
-    
 
-    
     const task = newArr.sort(
       (a, b) => b[0].date - a[0].date,
     );
@@ -149,11 +155,9 @@ export const Post = (onNavigate) => {
 
   // });
 
-  
   function deletePost() {
     const btnsDelete = document.body.querySelectorAll('.btn-delete');
     btnsDelete.forEach((btn) => {
-
       btn.addEventListener('click', async () => {
         try {
           console.log(btn.dataset.id);
@@ -165,39 +169,75 @@ export const Post = (onNavigate) => {
     });
   }
 
-
   function editPost() {
-    const card = printerPost.querySelector('.card');
-    const btnsEdit = card.querySelectorAll('.btn-edit');
+    const btnsEdit = document.body.querySelectorAll('.btn-edit');
     btnsEdit.forEach((btn) => {
-      console.log(btn);
+      console.log(btn, 'mama1');
       btn.addEventListener('click', async () => {
         try {
-          console.log(btn.dataset.id);
+          console.log(btn.dataset.id, 'mama2');
           const doc = await getPost(btn.dataset.id);
           const task = doc.data();
-          console.log(doc.data(), 'hello');
-          card['#textAreaPost'].value = task.container;
+          console.log(doc.data().container, 'mama3');
+          const am = document.querySelector('#textAreaPost');
+          console.log(am.value, 'mama4');
+          am.value = task.container;
+          am.focus();
+
           editStatus = true;
-          id = doc.id;
-          card['#printerPostButton'].innerText = 'Update';
+          id = btn.dataset.id;
+          console.log(id, 'mi mama me dio un manduco');
+          HomeDiv.querySelector('#printerPostButton').innerText = 'Guardar';
         } catch (error) {
-          console.log(error);
+          console.log(error, 'hello1');
         }
       });
     });
   }
 
-  
+  /* function x(){
+    HomeDiv.querySelector('#printerPostButton').removeEventListener('click', createPost());
+  } */
+
   HomeDiv.querySelector('#printerPostButton').addEventListener(
     'click',
     async (e) => {
       e.preventDefault();
       const textAreaPost = HomeDiv.querySelector('#textAreaPost');
       const textAreaContainer = textAreaPost.value;
-      createPost(textAreaContainer);
-      textAreaPost.value = '';
+      try {
+        if (!editStatus) {
+          createPost(textAreaContainer);
+          textAreaPost.value = '';
+        } else {
+          console.log('editing');
+
+          editStatus = false;
+          id = '';
+          textAreaPost.value = '';
+          HomeDiv.querySelector('#printerPostButton').innerText = 'Compartir';
+          await updatePost(id, { contenido: textAreaContainer });
+        }
+        /* if (editStatus === false) {
+          createPost(textAreaContainer);
+          textAreaPost.value = "";
+        } else {
+          await updatePost(id, {
+            container: textAreaPost.value,
+
+          });
+          editStatus = true;
+          console.log(id, "holaalalalalalalalala")
+          id = '';
+           textAreaPost.value = "";
+          HomeDiv.querySelector('#printerPostButton').innerText = 'Compartir';
+        } */
+        // textAreaPost.value.reset();
+      } catch (error) {
+        console.log(error, 'mamamamamamamamamamamamamamamama');
+      }
     },
   );
+
   return HomeDiv;
 };

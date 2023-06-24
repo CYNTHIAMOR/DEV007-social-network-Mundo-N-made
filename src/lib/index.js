@@ -15,6 +15,7 @@ import {
   getDoc,
   getDocs,
   onSnapshot,
+  updateDoc,
 } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
@@ -31,20 +32,19 @@ export function crearUsuarioConCorreoYContraseña(
       onNavigate('/post');
     }
   });
-  // .catch((err) => { alert('hola'); });
 }
 
 // INICIAR SESION CON CORREO Y CONTRASE;A
 
 export function signIn(email, contraseña, onNavigate) {
-  signInWithEmailAndPassword(auth, email, contraseña).then((result) => {
-    if (result.user) {
-      localStorage.getItem('casita', JSON.stringify(result));
-      onNavigate('/post');
-    }
-  });
+  signInWithEmailAndPassword(auth, email, contraseña)
+    .then((result) => {
+      if (result.user) {
+        localStorage.getItem('casita', JSON.stringify(result));
+        onNavigate('/post');
+      }
+    });
 }
-
 // INICIAR SESION CON GOOGLE Y FACEBOOK
 
 export const initSessionsWithGoogle = () => {
@@ -71,13 +71,15 @@ export const createPost = (contenido) => {
 
 // OBTENER DATA DE POSTS FIRESTORE
 
-export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback); //ojo verificar
+export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback); // ojo verificar
 
 export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
 export const getPosts = () => getDocs(collection(db, 'posts'));
 
 export const deletePosts = (id) => deleteDoc(doc(db, 'posts', id));
+
+export const updatePost = (id, newFields) => updateDoc(doc(db, 'post', id), newFields);
 /*
 // ADD LIKE
 export const addLikeArr = (idPost, uid) => (
