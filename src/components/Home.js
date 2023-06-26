@@ -19,10 +19,10 @@ export const Home = (onNavigate) => {
   buttonRegister.textContent = 'Registrate Aquí!!!';
   conditionP.textContent = 'Al presionar crear cuenta o iniciar sesión, aceptas nuestra politica de privacidad y cookies.';
 
- const pictures = document.createElement('img');
+  const pictures = document.createElement('img');
   pictures.src = './img/pictures.png';
 
- const picturesLogo = document.createElement('img');
+  const picturesLogo = document.createElement('img');
   picturesLogo.src = '../img/logo-bienvenida.png';
 
   // hacemos el llamado

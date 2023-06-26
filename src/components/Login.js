@@ -1,4 +1,8 @@
-import { initSessionsWithGoogle, signIn, initSessionsWithFacebook } from '../lib';
+import {
+  initSessionsWithGoogle,
+  signIn,
+  initSessionsWithFacebook,
+} from '../lib';
 
 export const Login = (onNavigate) => {
   const HomeDiv = document.createElement('div');
@@ -58,10 +62,8 @@ export const Login = (onNavigate) => {
     onNavigate('/register');
   });
 
-
   const buttonSubmitSingIn = HomeDiv.querySelector('#buttonSubmitSingIn');
- // inicio de sesión 
- 
+  // inicio de sesión
 
   if (buttonSubmitSingIn) {
     buttonSubmitSingIn.addEventListener('click', () => {
@@ -82,8 +84,7 @@ export const Login = (onNavigate) => {
   const buttonGoogle = HomeDiv.querySelector('#google-icon');
   buttonGoogle.addEventListener('click', () => {
     initSessionsWithGoogle().then((data) => {
-      if (data){
-
+      if (data) {
         onNavigate('/post');
       }
     });
@@ -102,7 +103,6 @@ export const Login = (onNavigate) => {
   });
 
   HomeDiv.classList.add('register');
-  
-  
+
   return HomeDiv;
 };

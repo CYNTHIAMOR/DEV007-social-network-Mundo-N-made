@@ -1,20 +1,14 @@
-import { doc } from 'firebase/firestore';
+// import heart from '../img/heart-empty.png';
+// import heartblue from '../img/heart-blue.png';
 import {
-  onGetPosts, createPost, deletePosts, getPost,
+  onGetPosts, createPost, deletePosts, getPost, updatePost, removeLike, logOut,
 } from '../lib';
+
 export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
   HomeDiv.classList.add('all');
-  // const buttonBack = document.createElement('button');
-  /* const postArea = HomeDiv.querySelector('#post').value;
-  const printerPost = HomeDiv.querySelector('#printerPost');
-  const printerPostButton = HomeDiv.querySelector('#printerPostButton');
-  printerPostButton.addEventListener('click', () => {
-    printerPost.innerHTML += postArea;
-  }); */
-  // buttonBack.textContent = 'Cerrar Sesión';
-  let editStatus = true;
-  const id = '';
+  let editStatus = false;
+  let id = '';
   HomeDiv.innerHTML = `
 <div class="container-background">
 <div class="container-presentation">
@@ -72,15 +66,48 @@ export const Post = (onNavigate) => {
  </div>
     `;
 
-  const name = HomeDiv.querySelector('.name');
-  // name.innerHTML = `${usuario}`;
+  // ------------------------------------FUNCIONES ---------------------------------
 
-  const btnFinish = HomeDiv.querySelector('.btn-finish');
-  btnFinish.addEventListener('click', () => onNavigate('/'));
+  // BORRAR POST
 
-  // buttonBack.addEventListener('click', () => onNavigate('/'));
-  // HomeDiv.appendChild(buttonBack);
-  // POST
+  function deletePost() {
+    const btnsDelete = document.body.querySelectorAll('.btn-delete');
+    btnsDelete.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try {
+          await deletePosts(btn.dataset.id);
+        } catch (error) {
+          // console.log(error);
+        }
+      });
+    });
+  }
+
+  // EDITAR POST
+
+  function editPost() {
+    const btnsEdit = document.body.querySelectorAll('.btn-edit');
+    btnsEdit.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        try {
+          console.log(btn.dataset.id);
+          const doc = await getPost(btn.dataset.id);
+          const task = doc.data();
+          const am = HomeDiv.querySelector('#textAreaPost');
+          am.value = task.container;
+          am.focus();
+          id = btn.dataset.id;
+          HomeDiv.querySelector('#printerPostButton').innerText = 'Guardar';
+          editStatus = true;
+        } catch (error) {
+          // console.log(error, 'hello1');
+        }
+      });
+    });
+  }
+
+  // ----------------------------POST---------------------------------------------
+
   const printerPost = HomeDiv.querySelector('#printerPost');
   // window.addEventListener('DOMContentLoaded', async (e) => {
   // const querySnapshot = await getPosts();
@@ -103,7 +130,6 @@ export const Post = (onNavigate) => {
       (a, b) => b[0].date - a[0].date,
     );
 
-    console.log(task);
     task.forEach((doc) => {
       printerPost.innerHTML += `
                                  <div class="card">
@@ -143,51 +169,34 @@ export const Post = (onNavigate) => {
                                     <div class="container-text-post">
                                     <p >${doc[0].container}</p>
                                     </div>
+                                    <hr>
+                                    <div>
+                                      <button class="button-like" data-id="${doc[1].id}">
+                                      <img src="../img/heart-blue.png">
+                                      </button>
+                                      <p class="${doc[0].likes}"></p>
+                                    </div>
+                                    
                                   </div>`;
     });
     deletePost();
     editPost();
+    like();
   });
 
   // });
 
+  // ---------------------------------------- EVENTOS ----------------------------------
 
-  function deletePost() {
-    const btnsDelete = document.body.querySelectorAll('.btn-delete');
-    btnsDelete.forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        try {
-          console.log(btn.dataset.id);
-          await deletePosts(btn.dataset.id);
-        } catch (error) {
-          console.log(error);
-        }
-      });
-    });
-  }
+  // CERRAR SESION
 
-  function editPost() {
-    const btnsEdit = document.body.querySelectorAll('.btn-edit');
-    btnsEdit.forEach((btn) => {
-      console.log(btn);
-      btn.addEventListener('click', async () => {
-        try {
-          console.log(btn.dataset.id);
-          const doc = await getPost(btn.dataset.id);
-          const task = doc.data();
-          console.log(doc.data(), 'hello');
-          card['#textAreaPost'].value = task.container;
-          editStatus = true;
-          id = doc.id;
-          card['#printerPostButton'].innerText = 'Update';
-        } catch (error) {
-          console.log(error, 'hello1');
-        }
-      });
-    });
-  }
+  const btnFinish = HomeDiv.querySelector('.btn-finish');
+  btnFinish.addEventListener('click', async () => {
+    logOut(onNavigate);
+  });
 
-  
+  // CREAR O EDITAR EL POST
+
   HomeDiv.querySelector('#printerPostButton').addEventListener(
     'click',
     async (e) => {
@@ -199,34 +208,55 @@ export const Post = (onNavigate) => {
           createPost(textAreaContainer);
           textAreaPost.value = '';
         } else {
-          console.log('editing');
-
+          await updatePost(id, { container: textAreaContainer });
           editStatus = false;
           id = '';
           textAreaPost.value = '';
           HomeDiv.querySelector('#printerPostButton').innerText = 'Compartir';
-          await updatePost(id, { contenido: textAreaContainer });
         }
-        /* if (editStatus === false) {
-          createPost(textAreaContainer);
-          textAreaPost.value = "";
-        } else {
-          await updatePost(id, {
-            container: textAreaPost.value,
-
-          });
-          editStatus = true;
-          console.log(id, "holaalalalalalalalala")
-          id = '';
-           textAreaPost.value = "";
-          HomeDiv.querySelector('#printerPostButton').innerText = 'Compartir';
-        } */
-        // textAreaPost.value.reset();
       } catch (error) {
-        console.log(error, 'mamamamamamamamamamamamamamamama');
+        // console.log(error, 'mamamamamamamamamamamamamamamama');
       }
     },
   );
+
+  // LIKES
+
+  function like() {
+    const buttonLike = document.body.querySelectorAll('.button-like');
+    buttonLike.forEach((btn_) => {
+      console.log(btn_, 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+      // btn.addEventListener('click', () => {
+
+      /* try {
+
+        console.log(btn.dataset.likes)
+        if (btn.dataset.id.includes(auth.currentUser.uid)) {
+          await removeLike(doc.data().id, auth.currentUser.uid);
+          console.log('removeLike');
+        } else { // si no tiene like, se agrega el like a la data
+          await addLike(doc.data().id, auth.currentUser.uid);
+          console.log('addLike');
+        }
+
+      } */
+      //  });
+    });
+  }
+
+  /*
+    if (doc.likes.includes(auth.currentUser.uid)) {
+      await removeLike(doc.data().id, auth.currentUser.uid);
+      console.log('removeLike');
+    } else { // si no tiene like, se agrega el like a la data
+      await addLike(doc.id, auth.currentUser.uid);
+      console.log('addLike');
+    }
+  }); */
+
+  // const colorLike = doc.data().likes.includes(auth.currentUser.uid) ? heartblue : heart;
+  // const num = HomeDiv.querySelector('.num');
+  // num.textContent = doc.likes.length;
 
   return HomeDiv;
 };

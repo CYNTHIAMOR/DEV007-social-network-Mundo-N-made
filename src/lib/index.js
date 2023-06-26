@@ -1,11 +1,10 @@
-// aqui exportaras las funciones que necesites
-
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
   FacebookAuthProvider,
+  signOut,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -19,7 +18,9 @@ import {
 } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
-// CREAR USUARIO
+// ----------------------------- CREAR USUARIO -----------------------------------------
+
+//  CON CORREO Y CONTRASE;A
 
 export function crearUsuarioConCorreoYContraseña(
   email,
@@ -34,7 +35,9 @@ export function crearUsuarioConCorreoYContraseña(
   });
 }
 
-// INICIAR SESION CON CORREO Y CONTRASE;A
+// ----------------------------INICIAR SESION -------------------------------
+
+// CON CORREO Y CONTRASE;A
 
 export function signIn(email, contraseña, onNavigate) {
   signInWithEmailAndPassword(auth, email, contraseña)
@@ -45,7 +48,8 @@ export function signIn(email, contraseña, onNavigate) {
       }
     });
 }
-// INICIAR SESION CON GOOGLE Y FACEBOOK
+
+// INICIAR SESION CON GOOGLE
 
 export const initSessionsWithGoogle = () => {
   const provider = new GoogleAuthProvider();
@@ -53,44 +57,56 @@ export const initSessionsWithGoogle = () => {
   return signInWithPopup(auth, provider);
 };
 
+// INICIAR SESION CON FACEBOOK
+
 export const initSessionsWithFacebook = () => {
   const provider = new FacebookAuthProvider();
 
   return signInWithPopup(auth, provider);
 };
 
-// CREAR POST
+// --------------------------- POSTEAR -----------------------------------
+
+// CRAER POST
 
 export const createPost = (contenido) => {
   addDoc(collection(db, 'posts'), {
     container: contenido,
     date: Date.now(),
     usuario: auth.currentUser.email,
-    creationDate: new Date()
+    likes: [],
+
   });
 };
 
-// OBTENER DATA DE POSTS FIRESTORE
+// ------- OBTENER DATA DE POSTS FIRESTORE------------
 
-export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback); // ojo verificar
+export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback);
 
 export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
 export const getPosts = () => getDocs(collection(db, 'posts'));
 
+// ---------- BORRAR Y EDITAR POST ----------
+
 export const deletePosts = (id) => deleteDoc(doc(db, 'posts', id));
 
-export const updatePost = (id, newFields) => updateDoc(doc(db, 'post', id), newFields);
-/*
+export const updatePost = (id, newFields) => updateDoc(doc(db, 'posts', id), newFields);
+
 // ADD LIKE
-export const addLikeArr = (idPost, uid) => (
-  firebase.firestore().collection('posts').doc(idPost)
-    .update({ likes: firebase.firestore.FieldValue.arrayUnion(uid) })
-);
+export const addLike = (id, like) => updateDoc(doc(db, 'posts', id), { likes: arrayUnion(like) });
 
 // REMOVE LIKE
-export const removeLikeArr = (idPost, uid) => (
-  firebase.firestore().collection('posts').doc(idPost)
-    .update({ likes: firebase.firestore.FieldValue.arrayRemove(uid) })
-);
-*/
+export const removeLike = (id, like) => updateDoc(doc(db, 'posts', id), { likes: arrayRemove(like) });
+
+// ----------------------------- CERRAR SESION -----------------------
+
+export const logOut = (onNavigate) => {
+  signOut(auth)
+    .then(() => {
+      onNavigate('/');
+    })
+    .catch((err) => {
+     console.log(err.message);
+    });
+};
