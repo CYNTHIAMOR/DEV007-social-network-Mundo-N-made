@@ -1,70 +1,79 @@
-// import heart from '../img/heart-empty.png';
-// import heartblue from '../img/heart-blue.png';
+import heart from '../img/heart-empty.png';
+import heartblue from '../img/heart-blue.png';
+
 import {
-  onGetPosts, createPost, deletePosts, getPost, updatePost, removeLike, logOut,
+  onGetPosts, createPost, deletePosts, getPost, logOut, updatePost, addLike, removeLike,
 } from '../lib';
+import { auth } from '../firebase';
 
 export const Post = (onNavigate) => {
   const HomeDiv = document.createElement('div');
   HomeDiv.classList.add('all');
   let editStatus = false;
   let id = '';
+  
+  
+  const user = auth.currentUser;
+  console.log(user)
+
+
+
   HomeDiv.innerHTML = `
-<div class="container-background">
-<div class="container-presentation">
-<div class="container-logo"></div>
-<button class="btn-finish"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout-2" width="30" height="44" viewBox="0 0 24 24" stroke-width="2.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
-<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-<path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
-<path d="M15 12h-12l3 -3" />
-<path d="M6 15l-3 -3" />
-</svg></button>
-</div>
-  <main >
-    <section class="section-post">
-      <div class="div-post" id="divPost">
-      <div class="container-name-picture">
+  <div class="container-background">
+  <div class="container-presentation">
+  <div class="container-logo"></div>
+  <button class="btn-finish"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout-2" width="30" height="44" viewBox="0 0 24 24" stroke-width="2.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" />
+  <path d="M15 12h-12l3 -3" />
+  <path d="M6 15l-3 -3" />
+  </svg></button>
+  </div>
+    <main >
+      <section class="section-post">
+        <div class="div-post" id="divPost">
+        <div class="container-name-picture">
+        </svg></a></button>
+      <button class="nav-button"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9E9E9E" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+      <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+      <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
       </svg></a></button>
-    <button class="nav-button"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9E9E9E" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-    <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-    <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
-    </svg></a></button>
-        <h3 class="name"></h3>
-        </div>
-        <div class="am"><textarea placeholder="Qué quieres compartir?" class="text-area-post" name="post" id="textAreaPost" cols="30" rows="10"></textarea></div>
-          <div class="container-photo-post">
-            <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-filled" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597E8D" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <path d="M8.813 11.612c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.986 4.986l.094 .083a1 1 0 0 0 1.403 -1.403l-.083 -.094l-1.292 -1.293l.292 -.293l.106 -.095c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.674 4.675a4 4 0 0 1 -3.775 3.599l-.206 .005h-12a4 4 0 0 1 -3.98 -3.603l6.687 -6.69l.106 -.095zm9.187 -9.612a4 4 0 0 1 3.995 3.8l.005 .2v9.585l-3.293 -3.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-.307 .306l-2.293 -2.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-5.307 5.306v-9.585a4 4 0 0 1 3.8 -3.995l.2 -.005h12zm-2.99 5l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z" stroke-width="0" fill="currentColor" />
-          </svg></div>
-            <div> <button class="compartir" id="printerPostButton">Compartir</button></div>
+          <h3 class="name">${auth.currentUser}</h3>
           </div>
-          </div>
-    </section>
-    <section class="section-post-history">
-        <div class="printer-post" id="printerPost"></div>
-    </section>
-  </main>
-  <nav class="menu">
-    <div class="container-nav">
-    <button class="nav-button"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9E9E9E" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-    </svg></a></button>
-    <button class="nav-button"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9E9E9E" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-    <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-    <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
-    </svg></a></button>
-    </div>
-  </nav>
- </div>
-    `;
+          <div class="am"><textarea placeholder="Qué quieres compartir?" class="text-area-post" name="post" id="textAreaPost" cols="30" rows="10"></textarea></div>
+            <div class="container-photo-post">
+              <div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-photo-filled" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597E8D" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M8.813 11.612c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.986 4.986l.094 .083a1 1 0 0 0 1.403 -1.403l-.083 -.094l-1.292 -1.293l.292 -.293l.106 -.095c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.674 4.675a4 4 0 0 1 -3.775 3.599l-.206 .005h-12a4 4 0 0 1 -3.98 -3.603l6.687 -6.69l.106 -.095zm9.187 -9.612a4 4 0 0 1 3.995 3.8l.005 .2v9.585l-3.293 -3.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-.307 .306l-2.293 -2.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-5.307 5.306v-9.585a4 4 0 0 1 3.8 -3.995l.2 -.005h12zm-2.99 5l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z" stroke-width="0" fill="currentColor" />
+            </svg></div>
+              <div> <button class="compartir" id="printerPostButton">Compartir</button></div>
+            </div>
+            </div>
+      </section>
+      <section class="section-post-history">
+          <div class="printer-post" id="printerPost"></div>
+      </section>
+    </main>
+    <nav class="menu">
+      <div class="container-nav">
+      <button class="nav-button"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9E9E9E" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+      </svg></a></button>
+      <button class="nav-button"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-circle" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9E9E9E" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+      <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+      <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
+      </svg></a></button>
+      </div>
+    </nav>
+  </div>
+      `;
 
   // ------------------------------------FUNCIONES ---------------------------------
 
@@ -106,6 +115,39 @@ export const Post = (onNavigate) => {
     });
   }
 
+  // DAR COLOR A LOS LIKES
+
+  // const num = HomeDiv.querySelector('.num');
+  // num.textContent = doc.likes.length;
+  // const containerLikes = document.body.querySelector('.container-likes')
+  // containerLikes.innerHTML += `${doc[0].likes.length}`
+
+  // DAR Y QUITAR LIKE
+
+  function like() {
+    const buttonLike = document.body.querySelectorAll('.button-like');
+    buttonLike.forEach((btn_) => {
+      btn_.addEventListener('click', async () => {
+        // console.log(btn_.dataset.id);
+        // console.log(auth.currentUser.uid);
+
+        const cod = btn_.dataset.id;
+        console.log(auth.currentUser, 'llllllllllllllllllllllllllllll');
+        try {
+          if (btn_.dataset.id.includes(auth.currentUser.uid)) {
+            await removeLike(cod, auth.currentUser.uid);
+            console.log(removeLike);
+          } else {
+            await addLike(cod, auth.currentUser.uid);
+            console.log(addLike);
+          }
+        } catch (err) {
+          console.log(err.message);
+        }
+      });
+    });
+  }
+
   // ----------------------------POST---------------------------------------------
 
   const printerPost = HomeDiv.querySelector('#printerPost');
@@ -131,6 +173,7 @@ export const Post = (onNavigate) => {
     );
 
     task.forEach((doc) => {
+      const x = doc[0].likes.includes(auth.currentUser.uid) ? heartblue : heart;
       printerPost.innerHTML += `
                                  <div class="card">
 
@@ -170,21 +213,18 @@ export const Post = (onNavigate) => {
                                     <p >${doc[0].container}</p>
                                     </div>
                                     <hr>
-                                    <div>
+                                    <div class="likes">
                                       <button class="button-like" data-id="${doc[1].id}">
-                                      <img src="../img/heart-blue.png">
+                                      <img src='${x}' class="color-like">
                                       </button>
-                                      <p class="${doc[0].likes}"></p>
+                                      <div class="container-likes">${doc[0].likes.length}</div>
                                     </div>
-                                    
                                   </div>`;
     });
     deletePost();
     editPost();
     like();
   });
-
-  // });
 
   // ---------------------------------------- EVENTOS ----------------------------------
 
@@ -220,43 +260,9 @@ export const Post = (onNavigate) => {
     },
   );
 
-  // LIKES
-
-  function like() {
-    const buttonLike = document.body.querySelectorAll('.button-like');
-    buttonLike.forEach((btn_) => {
-      console.log(btn_, 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-      // btn.addEventListener('click', () => {
-
-      /* try {
-
-        console.log(btn.dataset.likes)
-        if (btn.dataset.id.includes(auth.currentUser.uid)) {
-          await removeLike(doc.data().id, auth.currentUser.uid);
-          console.log('removeLike');
-        } else { // si no tiene like, se agrega el like a la data
-          await addLike(doc.data().id, auth.currentUser.uid);
-          console.log('addLike');
-        }
-
-      } */
-      //  });
-    });
-  }
-
-  /*
-    if (doc.likes.includes(auth.currentUser.uid)) {
-      await removeLike(doc.data().id, auth.currentUser.uid);
-      console.log('removeLike');
-    } else { // si no tiene like, se agrega el like a la data
-      await addLike(doc.id, auth.currentUser.uid);
-      console.log('addLike');
-    }
-  }); */
-
-  // const colorLike = doc.data().likes.includes(auth.currentUser.uid) ? heartblue : heart;
-  // const num = HomeDiv.querySelector('.num');
-  // num.textContent = doc.likes.length;
-
   return HomeDiv;
 };
+
+/* al dar click en like
+
+1 like cambie a azul */

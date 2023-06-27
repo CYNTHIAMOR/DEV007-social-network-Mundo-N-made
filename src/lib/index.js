@@ -8,6 +8,8 @@ import {
 } from 'firebase/auth';
 import {
   addDoc,
+  arrayRemove,
+  arrayUnion,
   collection,
   deleteDoc,
   doc,
@@ -19,6 +21,13 @@ import {
 import { auth, db } from '../firebase';
 
 // ----------------------------- CREAR USUARIO -----------------------------------------
+
+// PERFIL
+
+
+
+
+
 
 //  CON CORREO Y CONTRASE;A
 
@@ -107,6 +116,6 @@ export const logOut = (onNavigate) => {
       onNavigate('/');
     })
     .catch((err) => {
-     console.log(err.message);
+      console.log(err.message);
     });
 };
