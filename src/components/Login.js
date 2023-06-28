@@ -50,7 +50,7 @@ export const Login = (onNavigate) => {
       <label class="register-label">Aún no tienes cuenta? </label>
       <button class="button-register log" id="butonRegisterLog"> Registrate aquí!! </button>
       </div>
-      <p class="condition-p a">Al presionar crear cuenta o iniciar sesión, aceptas nuestra politica de privacidad y cookies.</p>
+      <p class="condition-p-home">Al presionar crear cuenta o iniciar sesión, aceptas nuestra politica de privacidad y cookies.</p>
       
     </div>
   </div>

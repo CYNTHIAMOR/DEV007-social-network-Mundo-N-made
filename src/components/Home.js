@@ -52,6 +52,6 @@ export const Home = (onNavigate) => {
   registerDiv.classList.add('register-div');
   registerLabel.classList.add('register-label');
   buttonRegister.classList.add('button-register');
-  conditionP.classList.add('condition-p');
+  conditionP.classList.add('condition-p-home');
   return HomeDiv;
 };

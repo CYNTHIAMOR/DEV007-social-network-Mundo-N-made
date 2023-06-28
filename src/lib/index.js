@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -24,9 +25,7 @@ import { auth, db } from '../firebase';
 
 // PERFIL
 
-
-
-
+// export const profile = (name_, xx) => updateProfile((name_, xx), { displayName: , photoURL: });
 
 
 //  CON CORREO Y CONTRASE;A
