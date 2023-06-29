@@ -2,7 +2,14 @@ import heart from '../img/heart-empty.png';
 import heartblue from '../img/heart-blue.png';
 
 import {
-  onGetPosts, createPost, deletePosts, getPost, logOut, updatePost, addLike, removeLike,
+  onGetPosts,
+  createPost,
+  deletePosts,
+  getPost,
+  logOut,
+  updatePost,
+  addLike,
+  removeLike,
 } from '../lib';
 import { auth } from '../firebase';
 
@@ -204,20 +211,16 @@ export const Post = (onNavigate) => {
       console.log(task, 'sombarue')
       const idDoc = doc.id;
       newArr.push([task, { id: idDoc }]);
-
-
-
-      
     });
 
-    const task = newArr.sort(
-      (a, b) => b[0].date - a[0].date,
-    );
+    const task = newArr.sort((a, b) => b[0].date - a[0].date);
 
     task.forEach((doc) => {
-      const likeImg = doc[0].likes.includes(auth.currentUser.uid) ? heartblue : heart;
+      const likeImg = doc[0].likes.includes(auth.currentUser.uid)
+        ? heartblue
+        : heart;
 
-      printerPost.innerHTML += `
+      const html = `
                                  <div class="card">
 
                                     <div class="user">
@@ -263,9 +266,32 @@ export const Post = (onNavigate) => {
                                       <div class="container-likes">${doc[0].likes.length}</div>
                                     </div>
                                   </div>`;
+
+      printerPost.insertAdjacentHTML('beforeend', html);
+
+      const buttonLike =
+        printerPost.lastElementChild.lastElementChild.firstElementChild;
+      buttonLike.addEventListener('click', async () => {
+        const cod = doc[1].id;
+        console.log(cod);
+        console.log(doc[0])
+        console.log(auth.currentUser, 'llllllllllllllllllllllllllllll');
+        
+        try {
+          if (doc[0].likes.includes(auth.currentUser.uid)) {
+            await removeLike(cod, auth.currentUser.uid);
+            console.log(removeLike);
+          } else {
+            await addLike(cod, auth.currentUser.uid);
+            console.log(addLike);
+          }
+        } catch (err) {
+          console.log(err.message);
+        }
+      });
     });
 
-    like();
+    //like();
     deletePost();
     editPost();
   });
@@ -301,7 +327,7 @@ export const Post = (onNavigate) => {
       } catch (error) {
         // console.log(error, 'mamamamamamamamamamamamamamamama');
       }
-    },
+    }
   );
 
   return HomeDiv;
