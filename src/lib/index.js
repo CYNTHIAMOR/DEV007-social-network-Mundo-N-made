@@ -3,7 +3,6 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
-  FacebookAuthProvider,
   signOut,
 } from 'firebase/auth';
 import {
@@ -47,6 +46,7 @@ export function crearUsuarioConCorreoYContraseña(
 export function signIn(email, contraseña, onNavigate) {
   signInWithEmailAndPassword(auth, email, contraseña)
     .then((result) => {
+    // console.log(result)
       if (result.user) {
         localStorage.getItem('casita', JSON.stringify(result));
         onNavigate('/post');
@@ -64,17 +64,18 @@ export const initSessionsWithGoogle = () => {
 
 // INICIAR SESION CON FACEBOOK
 
-export const initSessionsWithFacebook = () => {
+/* export const initSessionsWithFacebook = () => {
   const provider = new FacebookAuthProvider();
 
   return signInWithPopup(auth, provider);
-};
+}; */
 
 // --------------------------- POSTEAR -----------------------------------
 
 // CRAER POST
 
 export const createPost = (contenido) => {
+  // console.log(contenido, 'jkdhfkjdhr')
   addDoc(collection(db, 'posts'), {
     container: contenido,
     date: Date.now(),

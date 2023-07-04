@@ -1,7 +1,6 @@
 import {
   initSessionsWithGoogle,
   signIn,
-  initSessionsWithFacebook,
 } from '../lib';
 
 export const Login = (onNavigate) => {
@@ -89,13 +88,13 @@ export const Login = (onNavigate) => {
       }
     });
   });
-  const buttonFacebook = HomeDiv.querySelector('#facebook-icon');
+  /* const buttonFacebook = HomeDiv.querySelector('#facebook-icon');
   buttonFacebook.addEventListener('click', () => {
     // console.log(initSessionsWithFacebook);
     initSessionsWithFacebook().then(() => {
       onNavigate('/post');
     });
-  });
+  }); */
 
   const buttonBack = HomeDiv.querySelector('#backP');
   buttonBack.addEventListener('click', () => {

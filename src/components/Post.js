@@ -199,6 +199,7 @@ export const Post = (onNavigate) => {
   // const postNew = onGetPosts(querySnapshot)
   // console.log(querySnapshot)
   onGetPosts((querySnapshot) => {
+  // console.log(querySnapshot.docs, 'bkhzlhflgkhlg')
     printerPost.innerHTML = '';
     const newArr = [];
     querySnapshot.forEach((doc) => {
@@ -303,6 +304,7 @@ export const Post = (onNavigate) => {
           createPost(textAreaContainer);
           textAreaPost.value = '';
         } else {
+          // console.log(updatePost);
           await updatePost(id, { container: textAreaContainer });
           editStatus = false;
           id = '';

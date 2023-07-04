@@ -1,4 +1,4 @@
-import { crearUsuarioConCorreoYContraseña, initSessionsWithGoogle, initSessionsWithFacebook } from '../lib';
+import { crearUsuarioConCorreoYContraseña, initSessionsWithGoogle } from '../lib';
 
 export const Register = (onNavigate) => {
   const HomeDiv = document.createElement('div');
@@ -67,13 +67,13 @@ export const Register = (onNavigate) => {
       onNavigate('/post');
     });
   });
-  const buttonFacebook = HomeDiv.querySelector('#facebook-icon');
+  /* const buttonFacebook = HomeDiv.querySelector('#facebook-icon');
   buttonFacebook.addEventListener('click', () => {
     // console.log(initSessionsWithFacebook);
     initSessionsWithFacebook().then(() => {
       onNavigate('/post');
     });
-  });
+  }); */
 
   buttonSubmitRegister.addEventListener('click', (e) => {
     e.preventDefault();
