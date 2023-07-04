@@ -1,96 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
-
 }
-#root{
+#root {
   width: 375px;
   height: 844px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-
 }
 
-
-
-body{
-  background: rgb(31,13,58);
-  background: linear-gradient(180deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%); 
+body {
+  background: rgb(31, 13, 58);
+  background: linear-gradient(
+    180deg,
+    rgba(31, 13, 58, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
   background-repeat: no-repeat;
- height: 100vh;
+  height: 100vh;
 
- width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  
 }
 
-.nav-button{
+.nav-button {
   background-color: transparent;
   border: none;
 }
 
-.menu{
+.menu {
   background-color: #d2d2d5;
   width: 100%;
   height: 50px;
-  box-shadow: 0px  0px 3px  1px rgba(0 0 0 / .3);
+  box-shadow: 0px 0px 3px 1px rgba(0 0 0 / 0.3);
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
-.container-nav{
+.container-nav {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-
-
-
-
-.title-one{
- 
+.title-one {
   font-size: larger;
   font-weight: 700;
   padding: 40px;
-  
 }
 
-
-.HomeDivOne{
-
+.HomeDivOne {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin: 0px; 
+  margin: 0px;
   position: relative;
 }
 
-.picture{
+.picture {
   background-image: url(./img/pictures.png);
   background-repeat: no-repeat;
   width: 355px;
   height: 500px;
   position: absolute;
-
-       
 }
 
-
-
-.logo1{
-
+.logo1 {
   z-index: 1000;
   background-image: url(./img/logo-principal-chico.png);
   width: 220px;
@@ -101,77 +86,66 @@ body{
   position: absolute;
 }
 
-.HomeDivTwo{
+.HomeDivTwo {
   margin-top: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 30px;
-  
 }
-.principal-button{
+.principal-button {
   width: 280px;
   height: 50px;
   background-color: white;
-  color:black;
+  color: black;
   font-size: large;
   border-radius: 8px;
   border-style: none;
   box-shadow: 10px 5px 5px rgba(37, 37, 37, 0.1);
-  
 }
-.principal-button:hover{
-  background-color: rgb(31,13,58);
+.principal-button:hover {
+  background-color: rgb(31, 13, 58);
   color: white;
   transform: scale(1.05);
   cursor: pointer;
-
 }
 
-.register-div{
-
+.register-div {
   display: flex;
   flex-direction: row;
   text-align: center;
   justify-content: center;
   color: white;
-
-  
 }
-.button-register{
+.button-register {
   padding: 10px;
   font-weight: 800;
-  
 }
-.log{
- background-color: transparent;
- border: none;
- color: white;
- font-size: large;
-
+.log {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: large;
 }
 
-.button-register:hover{
+.button-register:hover {
   transform: scale(1.05);
   cursor: pointer;
 }
-.register-label{
- padding-top: 10px;
- padding-bottom: 10px;
- margin-top: 3px;
- 
+.register-label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 3px;
 }
 
-.condition-p{
-
+.condition-p {
   width: 350px;
-  color: #1F0D3A;
+  color: #1f0d3a;
   font-size: 10px;
   text-align: center;
   margin-top: 20px;
 }
-.condition-p-home{
-
+.condition-p-home {
   width: 350px;
   color: white;
   font-size: 10px;
@@ -179,18 +153,13 @@ body{
   margin-top: 20px;
 }
 
-
-
-
-
 /* Pag de Registro*/
 
-.register-form-total{
-
+.register-form-total {
   padding-top: 20px;
- }
+}
 
-.register-form{
+.register-form {
   width: 344px;
   height: 690px;
   background-color: white;
@@ -198,40 +167,36 @@ body{
   margin: 16px;
   display: flex;
   flex-direction: column;
-  align-items:center;
- 
-
+  align-items: center;
 }
 
-
-input{
+input {
   padding-left: 15px;
-  margin-top: 15px ;
+  margin-top: 15px;
   width: 280px;
   height: 50px;
   border-radius: 3px;
   border-style: solid;
   font-size: large;
-  
 }
 
-.hr-reg{
+.hr-reg {
   margin: 30px;
   width: 270px;
   border-color: rgb(212, 205, 205);
 }
-.singin-google-facebook{
+.singin-google-facebook {
   margin: 10px 20px 0px 80px;
   width: 200px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.reg{
+.reg {
   margin: 10px 20px 10px 65px;
 }
 
-.google-facebook-icon{
+.google-facebook-icon {
   width: 55px;
   height: 55px;
   transition: 0.2s;
@@ -239,33 +204,31 @@ input{
   border-radius: 50px;
   border-style: none;
 }
-.google-facebook-icon:hover{
+.google-facebook-icon:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 2rem rgba(0 0 0 / .3);
+  box-shadow: 0 0 2rem rgba(0 0 0 / 0.3);
 }
 
-.principal-button-dark{
+.principal-button-dark {
   margin-top: 10px;
   margin-bottom: 50px;
   width: 280px;
   height: 50px;
-  background-color: rgb(31,13,58);
+  background-color: rgb(31, 13, 58);
   color: white;
   font-size: large;
   border-radius: 8px;
   border-style: none;
   box-shadow: 10px 5px 5px rgba(37, 37, 37, 0.1);
-  
 }
-.principal-button-dark:hover{
-  background-color:rgba(0,212,255,1);
+.principal-button-dark:hover {
+  background-color: rgba(0, 212, 255, 1);
   color: black;
   transform: scale(1.05);
   cursor: pointer;
-
 }
 
-#backP{
+#backP {
   margin-top: 30px;
   display: flex;
   margin-left: 20px;
@@ -276,38 +239,32 @@ input{
   border-radius: 3px;
 }
 
-.check-box{
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 1px 15px;
-text-align: justify;
-
+.check-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1px 15px;
+  text-align: justify;
 }
 
-.checkbox{
- width: 20px;
+.checkbox {
+  width: 20px;
   margin-bottom: 20px;
-
 }
 
-.acept{
+.acept {
   color: #8d8d8d;
   font-size: small;
   margin-left: 5px;
-
 }
-
-
-
 
 /* Pag de Login */
 
-.sing-in-father{
+.sing-in-father {
   width: 390px;
   height: 844px;
 }
-.title-two{
+.title-two {
   color: white;
   display: flex;
   flex-direction: row;
@@ -315,34 +272,34 @@ text-align: justify;
   gap: 10px;
 }
 
-.init{
+.init {
   font-size: larger;
   padding-top: 10px;
 }
-span{
+span {
   font-size: small;
 }
-.sing-in-form{
+.sing-in-form {
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
-  
 }
 
-.input-form{
+.input-form {
   margin-bottom: 30px;
 }
 
-
-.correo, .password{
+.correo,
+.password {
   border: 1px solid white;
   background-color: transparent;
 }
-.correo, .password::placeholder {
+.correo,
+.password::placeholder {
   color: white;
 }
-.logo-blanco{
+.logo-blanco {
   margin-left: 125px;
   margin-top: 30px;
   background-image: url(./img/logo-blanco.png);
@@ -350,54 +307,52 @@ span{
   height: 180px;
   background-repeat: no-repeat;
 }
-.ad{
+.ad {
   color: white;
   font-size: medium;
- text-align: start;
- margin: 5px 0px 0px 50px;
-
+  text-align: start;
+  margin: 5px 0px 0px 50px;
 }
-.hr-log{
+.hr-log {
   margin: 30px;
   width: 320 px;
   border-color: rgb(212, 205, 205);
 }
-.alertLogInSignUp{
+.alertLogInSignUp {
   margin-bottom: 20px;
 }
 
-
 /* Pag de Post */
 
-
-.container-presentation{
-  box-shadow: 0px  0px 5px  5px rgba(0 0 0 / .3);
+.container-presentation {
+  box-shadow: 0px 0px 5px 5px rgba(0 0 0 / 0.3);
   width: 100%;
   height: 90px;
-  background: linear-gradient(90deg, rgba(31,13,58,1) 35%, rgba(0,212,255,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(31, 13, 58, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
   border-radius: 0 0 30px 0;
   padding-top: 30px;
   padding-left: 20px;
   display: flex;
   justify-content: space-between;
- padding-right:30px;
-
+  padding-right: 30px;
 }
-.all{
+.all {
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.icon1{
+.icon1 {
   display: none;
 }
 
-
-
-.container-background{
-  background-color: #F5F5F5;
+.container-background {
+  background-color: #f5f5f5;
 
   width: 100%;
   height: 100%;
@@ -405,7 +360,7 @@ span{
   flex-direction: column;
 }
 
-main{
+main {
   overflow: scroll;
   padding: 10px;
   padding-top: 10px;
@@ -417,59 +372,47 @@ main{
   align-items: center;
 }
 
-.container-logo{
+.container-logo {
   background-image: url(./img/logo-post-movil.png);
   width: 180px;
   background-repeat: no-repeat;
-  padding-top:100px;
-
+  padding-top: 100px;
 }
-.btn-finish{
+.btn-finish {
   border: none;
-  background-color: transparent; 
+  background-color: transparent;
   margin-bottom: 35px;
 }
 
-
-
-.btn-finish:hover{
+.btn-finish:hover {
   cursor: pointer;
   transform: scale(1.05);
-  
 }
 
-
-
-.section-post{
- 
-  background-color:white;
+.section-post {
+  background-color: white;
   border-radius: 8px;
   padding: 15px;
   width: 100%;
   margin-top: 15px;
-
 }
 
-.section-post-history{
+.section-post-history {
   height: auto;
   margin-top: 20px;
   border-radius: 8px;
   width: 100%;
-
 }
 
-.compartir{
-  background-color: rgb(31,13,58);
+.compartir {
+  background-color: rgb(31, 13, 58);
   color: white;
-  padding: 5px 10px ;
+  padding: 5px 10px;
   border-radius: 5px;
   border: none;
-
-
-  
 }
 
-.text-area-post{
+.text-area-post {
   padding: 10px;
   width: 100%;
   height: 100px;
@@ -478,33 +421,28 @@ main{
   resize: none;
 }
 
-
-.container-photo-post{
+.container-photo-post {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 5px;
 }
 
-.container-name-picture{
+.container-name-picture {
   display: flex;
   flex-direction: row;
-  gap:10px;
+  gap: 10px;
   text-align: center;
-
 }
 
-h3{
+h3 {
   text-align: center;
   justify-content: center;
   padding-top: 8px;
-  
-
 }
 
-
 /*POST*/
-.card{
+.card {
   width: 100%;
   height: auto;
   background-color: white;
@@ -516,7 +454,7 @@ h3{
   margin-bottom: 20px;
 }
 
-.user{
+.user {
   font-weight: bold;
   width: 100%;
   height: auto;
@@ -527,29 +465,26 @@ h3{
   padding: 8px;
   box-shadow: 0 2px 5px rgb(234, 234, 234);
   margin-bottom: 10px;
-  
- 
 }
-.name{
-  padding: 5px 0 0 5px  ;
+.name {
+  padding: 5px 0 0 5px;
 }
-.user-name{
+.user-name {
   display: flex;
   flex-direction: row;
-
 }
-.btn-delete, .btn-edit{
+.btn-delete,
+.btn-edit {
   background-color: transparent;
   border: none;
- 
 }
-.btn-delete:hover, .btn-edit:hover{
+.btn-delete:hover,
+.btn-edit:hover {
   transform: scale(1.05);
   cursor: pointer;
   box-shadow: 0 6px 12px rgb(149, 154, 154);
-
 }
-.container-text-post{
+.container-text-post {
   padding: 20px;
   background-color: #f9f9fd;
   text-align: left;
@@ -557,167 +492,140 @@ h3{
   min-height: 70px;
   height: auto;
   overflow: hidden;
- 
 }
-.menu_{
+.menu_ {
   display: none;
-  
 }
-
 
 /*Media Query Laptop*/
 
-@media (min-width: 1024px)  {
+@media (min-width: 1024px) {
   /*post*/
-  body{
-
+  body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
   }
 
-    #root{
-      width: 100%;
-      height: 100%;
+  #root {
+    width: 100%;
+    height: 100%;
   }
-  
 
-  .container-presentation{
+  .container-presentation {
     width: 100%;
     height: 120px;
-  }  
-  .container-nav{
+  }
+  .container-nav {
     flex-direction: column;
     justify-content: space-between;
     height: 380px;
     width: 220px;
   }
-  .menu{
+  .menu {
     display: none;
   }
-  .menu_{ 
-    margin-top: 20px  ;
+  .menu_ {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
     height: 200px;
     width: 220px;
-
   }
-  main{
+  main {
     margin: 0;
     padding: 0;
-  
+
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content:space-between;
+    justify-content: space-between;
     padding-top: 30px;
-  
   }
-  .section-post-father{
+  .section-post-father {
     width: 60%;
     margin-right: 200px;
-  
   }
-  
 
-
-    .container-menu{
+  .container-menu {
     height: 250px;
     width: 220px;
-    background-color:white;
+    background-color: white;
     display: flex;
     flex-direction: column;
-    
-    border-radius: 0px 10px 10px 0; 
-    }
 
-  .section-post-history{ 
-  margin-top: 20px;
-    }
-
-  .container-logo{
-  width: 300px;
-  object-fit: contain;
+    border-radius: 0px 10px 10px 0;
   }
 
-  .compartir{
+  .section-post-history {
+    margin-top: 20px;
+  }
+
+  .comparts {
     width: 150px;
-    font-size: large; ;
+    font-size: large;
   }
 
-  .container-logo{
+  .container-logo {
     background-image: url(./img/logo_desktop.png);
     width: 300px;
     height: 10px;
     background-repeat: no-repeat;
     margin-left: 80px;
-
+    object-fit: contain;
   }
 
   /*register*/
-  
 
-  .container-father-register{
-    display:flex;
+  .container-father-register {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
-  .welcome-register{
+  .welcome-register {
     width: 50%;
     height: 900px;
     background-image: url(./img/Group\ 7222.png);
     background-repeat: no-repeat;
-  
   }
 
-  .register-form{
+  .register-form {
     width: 500px;
     height: 750px;
     margin-right: 70px;
   }
 
-  input{
+  input {
     width: 70%;
   }
-  .title-one{
+  .title-one {
     font-size: 28px;
   }
 
-  .register-form-total{
+  .register-form-total {
     padding: 30px;
     padding-top: 50px;
   }
-  
-
-
-
-
-
-
 }
 
-.likes{
+.likes {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   align-items: start;
   width: 95%;
   height: 30px;
-  background-color:transparent;
- 
+  background-color: transparent;
 }
-.button-like{
+.button-like {
   border: none;
   background-color: transparent;
   cursor: pointer;
- 
 }
-.button-like:hover{
+.button-like:hover {
   transform: scale(1.2);
 }
-

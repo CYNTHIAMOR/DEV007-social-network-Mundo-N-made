@@ -5,7 +5,6 @@ import {
   signInWithPopup,
   FacebookAuthProvider,
   signOut,
-  updateProfile,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -27,9 +26,7 @@ import { auth, db } from '../firebase';
 
 // export const profile = (name_, xx) => updateProfile((name_, xx), { displayName: , photoURL: });
 
-
 //  CON CORREO Y CONTRASE;A
-
 export function crearUsuarioConCorreoYContraseña(
   email,
   contraseña,
@@ -114,7 +111,6 @@ export const logOut = (onNavigate) => {
     .then(() => {
       onNavigate('/');
     })
-    .catch((err) => {
-      console.log(err.message);
+    .catch(() => {
     });
 };

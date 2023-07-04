@@ -84,7 +84,7 @@ export const Post = (onNavigate) => {
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M8.813 11.612c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.986 4.986l.094 .083a1 1 0 0 0 1.403 -1.403l-.083 -.094l-1.292 -1.293l.292 -.293l.106 -.095c.457 -.38 .918 -.38 1.386 .011l.108 .098l4.674 4.675a4 4 0 0 1 -3.775 3.599l-.206 .005h-12a4 4 0 0 1 -3.98 -3.603l6.687 -6.69l.106 -.095zm9.187 -9.612a4 4 0 0 1 3.995 3.8l.005 .2v9.585l-3.293 -3.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-.307 .306l-2.293 -2.292l-.15 -.137c-1.256 -1.095 -2.85 -1.097 -4.096 -.017l-.154 .14l-5.307 5.306v-9.585a4 4 0 0 1 3.8 -3.995l.2 -.005h12zm-2.99 5l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007z" stroke-width="0" fill="currentColor" />
               </svg></div>
-                <div> <button class="compartir" id="printerPostButton">Compartir</button></div>
+                <div> <button class="comparts" id="printerPostButton">Compartir</button></div>
               </div>
               </div>
         </section>
@@ -126,7 +126,6 @@ export const Post = (onNavigate) => {
     const btnsDelete = document.body.querySelectorAll('.btn-delete');
     btnsDelete.forEach((btn) => {
       btn.addEventListener('click', async () => {
-        console.log(btn.dataset.id);
         try {
           await deletePosts(btn.dataset.id);
         } catch (error) {
@@ -143,7 +142,6 @@ export const Post = (onNavigate) => {
     btnsEdit.forEach((btn) => {
       btn.addEventListener('click', async () => {
         try {
-          console.log(btn.dataset.id);
           const doc = await getPost(btn.dataset.id);
           const task = doc.data();
           const am = HomeDiv.querySelector('#textAreaPost');
@@ -167,7 +165,8 @@ export const Post = (onNavigate) => {
   // containerLikes.innerHTML += `${doc[0].likes.length}`
 
   // DAR Y QUITAR LIKE
-  function like() {
+  /* function like() {
+    console.log(like);
     const buttonLike = document.body.querySelectorAll('.button-like');
     buttonLike.forEach((btn_) => {
       btn_.addEventListener('click', async () => {
@@ -175,23 +174,19 @@ export const Post = (onNavigate) => {
         // console.log(auth.currentUser.uid);
 
         const cod = btn_.dataset.id;
-        console.log(cod);
-        console.log(auth.currentUser, 'llllllllllllllllllllllllllllll');
         try {
           if (btn_.dataset.id.includes(auth.currentUser.uid)) {
             await removeLike(cod, auth.currentUser.uid);
-            console.log(removeLike);
           } else {
             await addLike(cod, auth.currentUser.uid);
-            console.log(addLike);
           }
         } catch (err) {
-          console.log(err.message);
+          // console.log(error, 'hello1');
         }
       });
     });
   }
-
+*/
   // ----------------------------POST---------------------------------------------
 
   const printerPost = HomeDiv.querySelector('#printerPost');
@@ -208,7 +203,6 @@ export const Post = (onNavigate) => {
     const newArr = [];
     querySnapshot.forEach((doc) => {
       const task = doc.data();
-      console.log(task, 'sombarue')
       const idDoc = doc.id;
       newArr.push([task, { id: idDoc }]);
     });
@@ -269,29 +263,20 @@ export const Post = (onNavigate) => {
 
       printerPost.insertAdjacentHTML('beforeend', html);
 
-      const buttonLike =
-        printerPost.lastElementChild.lastElementChild.firstElementChild;
+      const buttonLike = printerPost.lastElementChild.lastElementChild.firstElementChild;
       buttonLike.addEventListener('click', async () => {
         const cod = doc[1].id;
-        console.log(cod);
-        console.log(doc[0])
-        console.log(auth.currentUser, 'llllllllllllllllllllllllllllll');
-        
         try {
           if (doc[0].likes.includes(auth.currentUser.uid)) {
             await removeLike(cod, auth.currentUser.uid);
-            console.log(removeLike);
           } else {
             await addLike(cod, auth.currentUser.uid);
-            console.log(addLike);
           }
         } catch (err) {
-          console.log(err.message);
+          console.error(err.message, 'ahhhhhh');
         }
       });
     });
-
-    //like();
     deletePost();
     editPost();
   });
@@ -325,14 +310,10 @@ export const Post = (onNavigate) => {
           HomeDiv.querySelector('#printerPostButton').innerText = 'Compartir';
         }
       } catch (error) {
-        // console.log(error, 'mamamamamamamamamamamamamamamama');
+        console.error(error.message, 'ahccccccchhhhh');
       }
-    }
+    },
   );
 
   return HomeDiv;
 };
-
-/* al dar click en like
-
-1 like cambie a azul */
