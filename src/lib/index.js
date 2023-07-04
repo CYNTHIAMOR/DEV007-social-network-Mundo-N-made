@@ -45,13 +45,12 @@ export function crearUsuarioConCorreoYContraseña(
 // CON CORREO Y CONTRASE;A
 
 export function signIn(email, contraseña, onNavigate) {
-  signInWithEmailAndPassword(auth, email, contraseña)
-    .then((result) => {
-      if (result.user) {
-        localStorage.getItem('casita', JSON.stringify(result));
-        onNavigate('/post');
-      }
-    });
+  signInWithEmailAndPassword(auth, email, contraseña).then((result) => {
+    if (result.user) {
+      localStorage.getItem('casita', JSON.stringify(result));
+      onNavigate('/post');
+    }
+  });
 }
 
 // INICIAR SESION CON GOOGLE
