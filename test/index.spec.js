@@ -11,6 +11,8 @@ jest.mock('firebase/auth');
 jest.mock('firebase/firestore');
 
 describe('signIn', () => {
+  // console.log(signInWithEmailAndPassword);
+
   it('debería ser una función', () => {
     expect(typeof signIn).toBe('function');
   });
