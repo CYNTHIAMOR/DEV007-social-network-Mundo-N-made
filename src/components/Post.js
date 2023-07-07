@@ -19,6 +19,8 @@ export const Post = (onNavigate) => {
   let editStatus = false;
   let id = '';
 
+  const userLogin = localStorage.getItem('user');
+
   HomeDiv.innerHTML = `
   <div class="container-background">
   <div class="container-presentation">
@@ -76,7 +78,7 @@ export const Post = (onNavigate) => {
         <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
         <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
         </svg></a></button>
-            <h3 class="name">${auth.currentUser}</h3>
+            <h3 class="name">${userLogin}</h3>
             </div>
             <div class="am"><textarea placeholder="Qué quieres compartir?" class="text-area-post" name="post" id="textAreaPost" cols="30" rows="10"></textarea></div>
               <div class="container-photo-post">
@@ -129,7 +131,7 @@ export const Post = (onNavigate) => {
         try {
           await deletePosts(btn.dataset.id);
         } catch (error) {
-          // console.log(error);
+          console.log(error);
         }
       });
     });
@@ -151,7 +153,7 @@ export const Post = (onNavigate) => {
           HomeDiv.querySelector('#printerPostButton').innerText = 'Guardar';
           editStatus = true;
         } catch (error) {
-          // console.log(error, 'hello1');
+          console.log(error, 'hello1');
         }
       });
     });
@@ -230,7 +232,7 @@ export const Post = (onNavigate) => {
                                        
                                       </div>
                                      
-                                      <div>
+                                      <div class="del-edit" id="delEdit" style="display:${doc[0].usuario === userLogin ? 'flex' : 'none'}">
                                         <button class="btn-delete" data-id="${doc[1].id}">
                                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -241,12 +243,12 @@ export const Post = (onNavigate) => {
                                             <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                           </svg>
                                         </button>
-                                        <button class="btn-edit" data-id="${doc[1].id}"> <a href="#name">
+                                        <button class="btn-edit" data-id="${doc[1].id}">
                                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                             <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
                                             <path d="M13.5 6.5l4 4" />
-                                          </svg> </a>
+                                          </svg> 
                                         </button>
                                       </div>
                                     </div>
@@ -288,7 +290,18 @@ export const Post = (onNavigate) => {
 
   const btnFinish = HomeDiv.querySelector('.btn-finish');
   btnFinish.addEventListener('click', async () => {
-    logOut(onNavigate);
+    try {
+      if (userLogin) {
+        // console.log(logOut)
+        await logOut(onNavigate);
+        localStorage.clear();
+        onNavigate('/');
+      } else {
+        console.log('hola');
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
   });
 
   // CREAR O EDITAR EL POST
@@ -299,9 +312,13 @@ export const Post = (onNavigate) => {
       e.preventDefault();
       const textAreaPost = HomeDiv.querySelector('#textAreaPost');
       const textAreaContainer = textAreaPost.value;
+      /* if (textAreaContainer === '') {
+        // console.log('jijd')
+        return alert('El contenido del post no puede estar vacío');
+      } */
       try {
         if (!editStatus) {
-          createPost(textAreaContainer);
+          createPost(textAreaContainer, userLogin);
           textAreaPost.value = '';
         } else {
           // console.log(updatePost);
@@ -314,6 +331,7 @@ export const Post = (onNavigate) => {
       } catch (error) {
         console.error(error.message, 'ahccccccchhhhh');
       }
+      // return null;
     },
   );
 

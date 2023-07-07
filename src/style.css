@@ -143,7 +143,6 @@ body {
   color: #1f0d3a;
   font-size: 10px;
   text-align: center;
-  margin-top: 20px;
 }
 .condition-p-home {
   width: 350px;
@@ -185,8 +184,15 @@ input {
   width: 270px;
   border-color: rgb(212, 205, 205);
 }
-.singin-google-facebook {
-  margin: 10px 20px 0px 80px;
+.singin-google-facebook-reg {
+  margin: 30px 20px 0px 40px;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.singin-google-facebook-log {
+  margin: 30px 0px 20px 90px;
   width: 200px;
   display: flex;
   flex-direction: row;
@@ -360,10 +366,10 @@ span {
   flex-direction: column;
 }
 
+
 main {
   overflow: scroll;
   padding: 10px;
-  padding-top: 10px;
   width: 100%;
   height: calc(100% - 140px);
   display: flex;
@@ -404,10 +410,11 @@ main {
   width: 100%;
 }
 
-.compartir {
+.comparts {
+ 
   background-color: rgb(31, 13, 58);
   color: white;
-  padding: 5px 10px;
+  padding: 6px 15px;
   border-radius: 5px;
   border: none;
 }
@@ -496,6 +503,10 @@ h3 {
 .menu_ {
   display: none;
 }
+.section-post-father {
+  width: 95%;
+  
+}
 
 /*Media Query Laptop*/
 
@@ -535,9 +546,7 @@ h3 {
     width: 220px;
   }
   main {
-    margin: 0;
-    padding: 0;
-
+    margin: 0px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -578,7 +587,10 @@ h3 {
     margin-left: 80px;
     object-fit: contain;
   }
-
+  /* .del-edit{
+    display: none;
+  } */
+  
   /*register*/
 
   .container-father-register {
@@ -611,6 +623,40 @@ h3 {
     padding: 30px;
     padding-top: 50px;
   }
+
+  /*login*/
+  .login-form {
+    border: 1px solid rgb(255, 255, 255);
+    margin-right: 100px;
+    height: 750px;
+    padding: 5px;
+    margin-top: 80px;
+    border-radius: 8px;
+   
+  }
+  .singin-google-facebook-log{
+   margin-left: 110px;
+  }
+  .condition-p-home{
+    margin-left: 30px;
+  }
+  .sing-in-form{
+    margin-top: 80px;
+  }
+ 
+  .logo-blanco {
+    display: none;
+  }
+
+  /*home*/
+
+  .picture {
+    background-size: cover;
+    width: 1200px;
+    height: 500px;
+    background-image: url(../img/picture_grande.png);
+  }
+
 }
 
 .likes {

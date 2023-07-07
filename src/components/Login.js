@@ -2,12 +2,16 @@ import {
   initSessionsWithGoogle,
   signIn,
 } from '../lib';
+// console.log({signIn})
 
 export const Login = (onNavigate) => {
   const HomeDiv = document.createElement('div');
 
   HomeDiv.innerHTML += `
-  <div class="sing-in-father">
+  <div class="container-father-register">
+  <div class="welcome-register">
+  </div>
+  <div class="login-form">
     <button class="backP" id="backP">  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
     <path d="M5 12l14 0" />
@@ -41,7 +45,7 @@ export const Login = (onNavigate) => {
         
         <div>
         <hr class="hr-log"> 
-        <div class="singin-google-facebook">
+        <div class="singin-google-facebook-log">
       <button class="google-facebook-icon" id="google-icon"> <img class="google" src="./img/logo--google.png"></button>
       <button class="google-facebook-icon" id="facebook-icon"> <img class="facebook" src="./img/logo-facebook.png"></button>
       </div> 
@@ -50,7 +54,8 @@ export const Login = (onNavigate) => {
       <button class="button-register log" id="butonRegisterLog"> Registrate aquí!! </button>
       </div>
       <p class="condition-p-home">Al presionar crear cuenta o iniciar sesión, aceptas nuestra politica de privacidad y cookies.</p>
-      
+      </div>
+      </div>
     </div>
   </div>
   
@@ -84,6 +89,7 @@ export const Login = (onNavigate) => {
   buttonGoogle.addEventListener('click', () => {
     initSessionsWithGoogle().then((data) => {
       if (data) {
+        localStorage.setItem('user', data);
         onNavigate('/post');
       }
     });

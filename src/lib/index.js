@@ -21,10 +21,6 @@ import { auth, db } from '../firebase';
 
 // ----------------------------- CREAR USUARIO -----------------------------------------
 
-// PERFIL
-
-// export const profile = (name_, xx) => updateProfile((name_, xx), { displayName: , photoURL: });
-
 //  CON CORREO Y CONTRASE;A
 export function crearUsuarioConCorreoYContraseña(
   email,
@@ -33,7 +29,7 @@ export function crearUsuarioConCorreoYContraseña(
 ) {
   createUserWithEmailAndPassword(auth, email, contraseña).then((result) => {
     if (result.user) {
-      localStorage.setItem('casita', JSON.stringify(result));
+      localStorage.setItem('user', email);
       onNavigate('/post');
     }
   });
@@ -43,11 +39,13 @@ export function crearUsuarioConCorreoYContraseña(
 
 // CON CORREO Y CONTRASE;A
 
+// export const signIn = (email, password) => signInWithEmailAndPassword(auth, email, password);
+
 export function signIn(email, contraseña, onNavigate) {
   signInWithEmailAndPassword(auth, email, contraseña).then((result) => {
     // console.log(result)
     if (result.user) {
-      localStorage.getItem('casita', JSON.stringify(result));
+      localStorage.setItem('user', email);
       onNavigate('/post');
     }
   });
@@ -73,17 +71,16 @@ export const initSessionsWithGoogle = () => {
 
 // CRAER POST
 
-export const createPost = (contenido) => {
+export const createPost = (contenido, userLogin) => {
   // console.log(contenido, 'jkdhfkjdhr')
   addDoc(collection(db, 'posts'), {
     container: contenido,
     date: Date.now(),
-    usuario: auth.currentUser.email,
+    usuario: userLogin,
     likes: [],
 
   });
 };
-
 // ------- OBTENER DATA DE POSTS FIRESTORE------------
 
 export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), callback);
@@ -106,11 +103,13 @@ export const removeLike = (id, like) => updateDoc(doc(db, 'posts', id), { likes:
 
 // ----------------------------- CERRAR SESION -----------------------
 
-export const logOut = (onNavigate) => {
+/* export const logOut = (onNavigate) => {
   signOut(auth)
     .then(() => {
+      localStorage.clear();
       onNavigate('/');
     })
     .catch(() => {
     });
-};
+}; */
+export const logOut = (onNavigate) => signOut(auth, onNavigate);

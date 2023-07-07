@@ -34,7 +34,7 @@ export const Register = (onNavigate) => {
       </form>
     
       <hr class="hr-register">
-      <div class="singin-google-facebook">
+      <div class="singin-google-facebook-reg">
       <button class="google-facebook-icon" id="google-icon"> <img class="google" src="./img/logo--google.png"></button>
       <button class="google-facebook-icon" id="facebook-icon"> <img class="facebook" src="./img/logo-facebook.png"></button>
       </div> 
