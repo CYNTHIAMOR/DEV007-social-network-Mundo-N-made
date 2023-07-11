@@ -13,7 +13,7 @@ export const Home = (onNavigate) => {
   const buttonRegister = document.createElement('buttom');
   const buttonLogin = document.createElement('button');
   const registerLabel = document.createElement('label');
-  // creamos el texto dentro de div
+
   buttonLogin.textContent = 'Iniciar Sesión';
   registerLabel.textContent = 'No tienes cuenta?';
   buttonRegister.textContent = 'Registrate Aquí!!!';
@@ -28,9 +28,6 @@ export const Home = (onNavigate) => {
   // hacemos el llamado
   buttonRegister.addEventListener('click', () => onNavigate('/register'));
   buttonLogin.addEventListener('click', () => onNavigate('/login'));
-
-  // agregar class
-  // registerDiv.style.backgroundColor = '#000000';
 
   HomeDivOne.appendChild(pictureDiv);
   HomeDivOne.appendChild(logoDiv);

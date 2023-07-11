@@ -1,11 +1,11 @@
-import { crearUsuarioConCorreoYContraseña, initSessionsWithGoogle } from '../lib';
+import { createUser, initSessionsWithGoogle } from '../lib';
 
 export const Register = (onNavigate) => {
   const HomeDiv = document.createElement('div');
 
   // const registerForm = document.querySelector("#registerForm");
 
-  HomeDiv.innerHTML += `<div class="container-father-register">
+  HomeDiv.innerHTML = `<div class="container-father-register">
   <div class="welcome-register">
   </div>
   <div class='register-form-total' id='registerFormTotal'> 
@@ -77,7 +77,13 @@ export const Register = (onNavigate) => {
 
   buttonSubmitRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    crearUsuarioConCorreoYContraseña(inputEmail.value, inputPassword.value, onNavigate);
+    const email = inputEmail.value;
+    const password = inputPassword.value;
+    if (email) {
+      localStorage.setItem('user', email);
+      createUser(email, password, onNavigate);
+      onNavigate('/post');
+    }
   });
   return HomeDiv;
 };

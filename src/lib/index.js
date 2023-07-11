@@ -13,7 +13,6 @@ import {
   deleteDoc,
   doc,
   getDoc,
-  getDocs,
   onSnapshot,
   updateDoc,
 } from 'firebase/firestore';
@@ -22,7 +21,11 @@ import { auth, db } from '../firebase';
 // ----------------------------- CREAR USUARIO -----------------------------------------
 
 //  CON CORREO Y CONTRASE;A
-export function crearUsuarioConCorreoYContraseña(
+export function createUser(email, contraseña) {
+  return createUserWithEmailAndPassword(auth, email, contraseña);
+}
+
+/* export function crearUsuarioConCorreoYContraseña(
   email,
   contraseña,
   onNavigate,
@@ -33,23 +36,24 @@ export function crearUsuarioConCorreoYContraseña(
       onNavigate('/post');
     }
   });
-}
+} */
 
 // ----------------------------INICIAR SESION -------------------------------
 
 // CON CORREO Y CONTRASE;A
 
-// export const signIn = (email, password) => signInWithEmailAndPassword(auth, email, password);
+export const signIn = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
-export function signIn(email, contraseña, onNavigate) {
+/* export function signIn(email, contraseña, onNavigate) {
   signInWithEmailAndPassword(auth, email, contraseña).then((result) => {
+    console.log(result);
     // console.log(result)
     if (result.user) {
       localStorage.setItem('user', email);
       onNavigate('/post');
     }
   });
-}
+} */
 
 // INICIAR SESION CON GOOGLE
 
@@ -87,7 +91,7 @@ export const onGetPosts = (callback) => onSnapshot(collection(db, 'posts'), call
 
 export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
-export const getPosts = () => getDocs(collection(db, 'posts'));
+// export const getPosts = () => getDocs(collection(db, 'posts'));
 
 // ---------- BORRAR Y EDITAR POST ----------
 

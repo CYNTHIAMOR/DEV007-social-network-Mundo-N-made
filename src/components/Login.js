@@ -7,7 +7,7 @@ import {
 export const Login = (onNavigate) => {
   const HomeDiv = document.createElement('div');
 
-  HomeDiv.innerHTML += `
+  HomeDiv.innerHTML = `
   <div class="container-father-register">
   <div class="welcome-register">
   </div>
@@ -70,7 +70,7 @@ export const Login = (onNavigate) => {
   // inicio de sesión
 
   if (buttonSubmitSingIn) {
-    buttonSubmitSingIn.addEventListener('click', () => {
+    buttonSubmitSingIn.addEventListener('click', async () => {
       const inputEmail = HomeDiv.querySelector('#input-email').value;
       const inputPassword = HomeDiv.querySelector('#input-password').value;
       const alertLogInSignUp = HomeDiv.querySelector('#alertLogInSignUp');
@@ -80,7 +80,17 @@ export const Login = (onNavigate) => {
       } else if (inputPassword === '') {
         alertLogInSignUp.innerText = '⚠️ Debe ingresar su contraseña';
       } else {
-        signIn(inputEmail, inputPassword, onNavigate);
+        try {
+          if (inputEmail && inputPassword) {
+            localStorage.setItem('user', inputEmail);
+            await signIn(inputEmail, inputPassword, onNavigate);
+            onNavigate('/post');
+          } else {
+            console.log('hola');
+          }
+        } catch (err) {
+          console.error(err);
+        }
       }
     });
   }

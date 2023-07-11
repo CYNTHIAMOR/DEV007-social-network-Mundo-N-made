@@ -1,11 +1,24 @@
 import {
-  GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
 } from 'firebase/auth';
 import {
-  addDoc, deleteDoc, onSnapshot, updateDoc,
+  addDoc, deleteDoc, getDoc, onSnapshot, updateDoc,
 } from 'firebase/firestore';
 import {
-  addLike, createPost, deletePosts, initSessionsWithGoogle, logOut, onGetPosts, removeLike, signIn,
+  addLike,
+  createPost,
+  createUser,
+  deletePosts,
+  getPost,
+  initSessionsWithGoogle,
+  logOut,
+  onGetPosts,
+  removeLike,
+  signIn,
   updatePost,
 } from '../src/lib/index';
 
@@ -22,17 +35,6 @@ describe('deletePosts', () => {
     expect(deleteDoc).toHaveBeenCalled();
   });
 });
-
-/* describe('updatePost', () => {
-  it('debería ser una función', () => {
-    expect(typeof updatePost).toBe('function');
-  });
-
-  it('Deberia llamar a la funcion updatePost cuando es ejecutada', async () => {
-    await updatePost('bjidjg');
-    expect(updateDoc).toHaveBeenCalled();
-  });
-}); */
 
 describe('updatePost', () => {
   test('debería editar post', async () => {
@@ -79,8 +81,19 @@ describe('onGetPosts', () => {
   });
 
   it('Deberia llamar a la funcion onSnapshot cuando es ejecutada', async () => {
-    await onGetPosts('bjidjg');
+    onGetPosts('bjidjg');
     expect(onSnapshot).toHaveBeenCalled();
+  });
+});
+
+describe('getPost', () => {
+  it('debería ser una función', () => {
+    expect(typeof getPost).toBe('function');
+  });
+
+  it('Deberia llamar a la funcion getDoc cuando es ejecutada', async () => {
+    getPost('bjidjg');
+    expect(getDoc).toHaveBeenCalled();
   });
 });
 
@@ -102,12 +115,12 @@ describe('initSessionsWithGoogle', () => {
 describe('createPost', () => {
   test('debería crear un post', async () => {
     addDoc.mockReturnValueOnce({ container: 'info' });
-    const response = await createPost('contenido');
+    const response = createPost('contenido');
     expect(response).toBe();
   });
 
   test('debería llamar a la función addDoc cuando es ejecutada', async () => {
-    await createPost('contenido');
+    createPost('contenido');
     expect(addDoc).toHaveBeenCalled();
   });
 });
@@ -119,13 +132,20 @@ describe('signIn', () => {
     expect(typeof signIn).toBe('function');
   });
 
-  /* it('devuelve un objeto', async () => {
-    const response = await signIn('mama@gmail.com', 'mama.123');
-    expect(typeof response).toBe('object');
-  }); */
-
   it('Debe llamar la funcion signInWithEmailAndPassword cuando es ejecutada', async () => {
     await signIn('mama@gmail.com', 'mama.123');
+    expect(signInWithEmailAndPassword).toHaveBeenCalled();
+  });
+});
+
+describe('createUser', () => {
+  it('debería ser una función', () => {
+    expect(typeof createUser).toBe('function');
+  });
+
+  it('Debe llamar la funcion createUserWithEmailAndPassword cuando es ejecutada', async () => {
+    // eslint-disable-next-line no-undef
+    createUserWithEmailAndPassword('mama@gmail.com', 'mama.123');
     expect(signInWithEmailAndPassword).toHaveBeenCalled();
   });
 });
@@ -143,9 +163,6 @@ describe('logOut', () => {
 
 describe('inicioGoogle', () => {
   it('debería ser una funciónn que crea cuenta con google', () => {
-    expect(typeof signInWithPopup).toBe('function');
-  });
-  it('debería crear una cuenta con email', () => {
     expect(typeof signInWithPopup).toBe('function');
   });
 });

@@ -146,9 +146,9 @@ export const Post = (onNavigate) => {
         try {
           const doc = await getPost(btn.dataset.id);
           const task = doc.data();
-          const am = HomeDiv.querySelector('#textAreaPost');
-          am.value = task.container;
-          am.focus();
+          const textAreaPost = HomeDiv.querySelector('#textAreaPost');
+          textAreaPost.value = task.container;
+          textAreaPost.focus();
           id = btn.dataset.id;
           HomeDiv.querySelector('#printerPostButton').innerText = 'Guardar';
           editStatus = true;
