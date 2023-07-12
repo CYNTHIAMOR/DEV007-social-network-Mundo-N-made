@@ -98,6 +98,7 @@ export const Login = (onNavigate) => {
   const buttonGoogle = HomeDiv.querySelector('#google-icon');
   buttonGoogle.addEventListener('click', () => {
     initSessionsWithGoogle().then((data) => {
+      console.log(data);
       if (data) {
         localStorage.setItem('user', data);
         onNavigate('/post');

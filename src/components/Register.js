@@ -75,14 +75,18 @@ export const Register = (onNavigate) => {
     });
   }); */
 
-  buttonSubmitRegister.addEventListener('click', (e) => {
+  buttonSubmitRegister.addEventListener('click', async (e) => {
     e.preventDefault();
     const email = inputEmail.value;
     const password = inputPassword.value;
-    if (email) {
-      localStorage.setItem('user', email);
-      createUser(email, password, onNavigate);
-      onNavigate('/post');
+    try {
+      if (email) {
+        localStorage.setItem('user', email);
+        await createUser(email, password, onNavigate);
+        onNavigate('/post');
+      }
+    } catch (error) {
+      console.log(error);
     }
   });
   return HomeDiv;

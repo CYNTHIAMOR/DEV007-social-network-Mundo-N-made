@@ -19,5 +19,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // Con el auth le decimos a firebase que valide datos(correo,contraseña)
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
