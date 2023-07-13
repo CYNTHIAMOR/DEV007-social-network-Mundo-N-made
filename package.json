@@ -11,7 +11,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "htmlhint": "htmlhint dist/*.html ",
+    "htmlhint": "htmlhint dist/*.html",
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
@@ -19,7 +19,7 @@
     "dev": "vite dev src",
     "start": "npm run dev",
     "build": "vite build",
-    "deploy": "./deploy.sh",
+    "deploy": "npm run build && gh-pages -d dist",
     "preview": "vite preview"
   },
   "devDependencies": {
