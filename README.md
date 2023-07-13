@@ -90,7 +90,6 @@ Como usuario quiero poner “Me gusta” a las publicaciones para apoyar a los p
 Ambos creados en *Figma*: https://www.figma.com/file/SaZFZZsVtfRCMn7CdiloYR/Mundo-N%C3%B3made?type=design&node-id=4-45&mode=design&t=Z5MbRQrur27hVAmM-0
 
 -  *Crear prototipos de baja fidelidad*
-
 ![Alt text](<src/img/prototipo-baja.jpeg>)
 
 -  *Crear prototipos de alta fidelidad que incluyan interacciones*

@@ -121,7 +121,7 @@ export const Post = (onNavigate) => {
       `;
 
   // ------------------------------------FUNCIONES ---------------------------------
-
+  // console.log(auth.currentUser)
   // BORRAR POST
 
   function deletePost() {

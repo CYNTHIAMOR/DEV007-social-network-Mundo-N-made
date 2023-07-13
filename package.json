@@ -19,8 +19,7 @@
     "dev": "vite dev src",
     "start": "npm run dev",
     "build": "vite build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "./deploy.sh",
     "preview": "vite preview"
   },
   "devDependencies": {

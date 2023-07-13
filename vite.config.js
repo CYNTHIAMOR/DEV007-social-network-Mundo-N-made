@@ -15,8 +15,10 @@ export default defineConfig(({ command }) => {
       // para o nome/url do seu repositório
       // https://vitejs.dev/guide/static-deploy.html#github-pages
       // ejemplo base: '/social-network/',
+      base: '/DEV007-social-network-Mundo-N-made/',
       build: {
         minify: false,
+        outDir: 'dist',
         rollupOptions: {
           output: {
             dir: './dist',
